@@ -1,0 +1,1577 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/sussmanjb/Data/mesa/MesaCodeJBS/MesaCAC_2018-12-04.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 4 Dec 2018, 21:51:21
+{txt}
+{com}. display "$S_DATE"
+{res} 4 Dec 2018
+{txt}
+{com}. 
+. * Jeremy Sussman and Venkatesh Murthy
+. 
+. /*
+> ** this imports MESA data. It's slow, so I only did it once **
+> import delimited /Users/sussmanjb/Data/mesa/Primary/Exam1/Data/mesae1dres06192012.csv
+>  sum
+> save mesa1, replace
+>  use mesa1
+> 
+> keep mesaid-othhisp1 dm031c rbrach1 lbrach1 wtlb1 htcm1 bmi1c agatum1c-prcacgt01c afib1c /*   
+>         */ hrtrate1 trig1-cepgfr1c  crp1 bphxage1-dbinsul1 aspnow1 fhha1c  /*
+>          */ asacat1 htnmed1c a2a1c-ohga1c slf11c-thzd1c verir1c vasoda1c pkyrs1c  cig1c   /*
+>          */ marital1 educ1 income1 agequit1 s1bp1 d1bp1 s2bp1 d2bp1 s3bp1 d3bp1 uabcat1c sb* db*
+>          
+> clear
+> import delimited /Users/sussmanjb/Data/mesa/Primary/Events/CVD/Data/mesaevfu10_drepos_20150416.csv
+>         keep  mesaid fuptt prebase mi mitype mitt strk strktype strktt /*
+>                 */ tia tiatype tiatt dth dthtype dthtext dthtt  /*
+>                 */ chdh chdhtt chda chdatt cvdh cvdhtt cvda cvdatt 
+>         save mesafup, replace
+>         sum
+>         
+> merge 1:1 mesaid using mesa1    
+> save mesa, replace
+> */
+. 
+. *** the main database. 
+. use mesa
+{txt}
+{com}. sum
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}mesaid {c |}{res}      6,814      3407.5    1967.177          1       6814
+{txt}{space 7}fuptt {c |}{res}      6,809    2830.772    654.0958          0       3987
+{txt}{space 5}prebase {c |}{res}          0
+{txt}{space 10}mi {c |}{res}      6,809    .0251138    .1564823          0          1
+{txt}{space 6}mitype {c |}{res}          0
+{txt}{hline 13}{c +}{hline 57}
+{space 8}mitt {c |}{res}      6,809    2799.444    692.9756          0       3987
+{txt}{space 8}strk {c |}{res}      6,809    .0217359    .1458308          0          1
+{txt}{space 4}strktype {c |}{res}        148    3.871622    1.213756          1          9
+{txt}{space 6}strktt {c |}{res}      6,809    2804.832    686.6631          0       3987
+{txt}{space 9}tia {c |}{res}      6,809    .0088119    .0934639          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}tiatype {c |}{res}          0
+{txt}{space 7}tiatt {c |}{res}      6,809    2814.281    673.5008          0       3987
+{txt}{space 9}dth {c |}{res}      6,809    .0759289    .2649038          0          1
+{txt}{space 5}dthtype {c |}{res}        517    6.787234    3.064739          1          9
+{txt}{space 5}dthtext {c |}{res}          0
+{txt}{hline 13}{c +}{hline 57}
+{space 7}dthtt {c |}{res}      6,809    2908.429    624.3313          0       3987
+{txt}{space 8}chdh {c |}{res}      6,809    .0345131    .1825565          0          1
+{txt}{space 6}chdhtt {c |}{res}      6,809      2799.8    691.9936          0       3987
+{txt}{space 8}chda {c |}{res}      6,809    .0569834    .2318279          0          1
+{txt}{space 6}chdatt {c |}{res}      6,809    2761.923    734.9308          0       3987
+{txt}{hline 13}{c +}{hline 57}
+{space 8}cvdh {c |}{res}      6,809    .0543398    .2267037          0          1
+{txt}{space 6}cvdhtt {c |}{res}      6,809    2774.175    721.3507          0       3987
+{txt}{space 8}cvda {c |}{res}      6,809    .0791599    .2700081          0          1
+{txt}{space 6}cvdatt {c |}{res}      6,809    2738.065    760.4801          0       3987
+{txt}{space 7}age1c {c |}{res}      6,814    62.15013    10.23262         44         84
+{txt}{hline 13}{c +}{hline 57}
+{space 4}agecat1c {c |}{res}      6,814    2.293513    1.030645          1          4
+{txt}{space 5}gender1 {c |}{res}      6,814    .4715292    .4992254          0          1
+{txt}{space 6}race1c {c |}{res}      6,814    2.331964    1.196103          1          4
+{txt}{space 7}hisp1 {c |}{res}      6,702     .223217    .4164337          0          1
+{txt}{space 4}mexican1 {c |}{res}      6,801    .1188061     .323584          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}dominic1 {c |}{res}      6,801    .0258785    .1587846          0          1
+{txt}{space 5}puerto1 {c |}{res}      6,801    .0299956    .1705876          0          1
+{txt}{space 6}cuban1 {c |}{res}      6,801    .0085282    .0919602          0          1
+{txt}{space 4}othhisp1 {c |}{res}      6,801    .0313189     .174191          0          1
+{txt}{space 4}msdna12c {c |}{res}      6,814    .9649252    .1839825          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}ssdna12c {c |}{res}      6,814    .9630173    .1887331          0          1
+{txt}{space 4}frncep1c {c |}{res}      5,905     .080779     .071868          0         .3
+{txt}{space 4}frjama1c {c |}{res}      6,759    .0895996    .0871982   .0027797   .6547573
+{txt}{space 4}frcirc1c {c |}{res}      6,759    .1095687    .0852792   .0095583   .6439641
+{txt}{space 4}frci081c {c |}{res}      6,814    14.47702    9.587726        1.2         30
+{txt}{hline 13}{c +}{hline 57}
+{space 4}mtsy031c {c |}{res}      6,795    .3604121    .4801553          0          1
+{txt}{space 7}htn1c {c |}{res}      6,814    .4487819    .4974063          0          1
+{txt}{space 4}htnstg1c {c |}{res}      6,811    2.344736    1.411436          1          6
+{txt}{space 6}dm031c {c |}{res}      6,790     .491458    .9506147          0          3
+{txt}{space 4}dmtype1c {c |}{res}        680    1.985294    .1204614          1          2
+{txt}{hline 13}{c +}{hline 57}
+{space 5}season1 {c |}{res}      6,814    2.365277    1.107851          1          4
+{txt}{space 5}rbrach1 {c |}{res}      6,781     133.903    20.38774         78        230
+{txt}{space 4}rdpedis1 {c |}{res}      6,747    146.6545    24.35216         38        280
+{txt}{space 6}rptib1 {c |}{res}      6,759     150.846    23.52831         68        300
+{txt}{space 6}lptib1 {c |}{res}      6,754    150.7215    23.31704         50        300
+{txt}{hline 13}{c +}{hline 57}
+{space 4}ldpedis1 {c |}{res}      6,741    147.1972    24.25201         40        270
+{txt}{space 5}lbrach1 {c |}{res}      6,766    134.5634    20.34961         80        240
+{txt}{space 4}aabpcmp1 {c |}{res}      6,800    .9744118     .157915          0          1
+{txt}{space 4}rluoccl1 {c |}{res}         54    .4444444    .5015699          0          1
+{txt}{space 4}rulocpt1 {c |}{res}         56    .2321429    .4260205          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}lluoccl1 {c |}{res}         51    .4901961    .5048782          0          1
+{txt}{space 4}lulocdp1 {c |}{res}         69    .5217391    .5031868          0          1
+{txt}{space 4}lulocpt1 {c |}{res}         52         .25    .4372373          0          1
+{txt}{space 4}rulocdp1 {c |}{res}         63    .4761905    .5034444          0          1
+{txt}{space 7}abi1c {c |}{res}      6,735    1.113139    .1203667   .3064516   1.982759
+{txt}{hline 13}{c +}{hline 57}
+{space 5}htmodp1 {c |}{res}      6,809    .0073432    .0853837          0          1
+{txt}{space 5}wtmodp1 {c |}{res}      6,810    .0017621    .0419436          0          1
+{txt}{space 4}waistcm1 {c |}{res}      6,813    98.15808    14.40641       33.5      193.5
+{txt}{space 5}hwmodp1 {c |}{res}      6,809    .0039653    .0628506          0          1
+{txt}{space 6}hipcm1 {c |}{res}      6,813    105.6209    11.47046       40.5      163.3
+{txt}{hline 13}{c +}{hline 57}
+{space 7}wtlb1 {c |}{res}      6,814    173.3346     37.9286       88.3        296
+{txt}{space 7}htcm1 {c |}{res}      6,814    166.3557    9.972125      141.3      195.4
+{txt}{space 7}bmi1c {c |}{res}      6,814    28.33345    5.432115   16.04426   54.50465
+{txt}{space 7}bsa1c {c |}{res}      6,814    1.864145    .2258477   1.261126   2.598034
+{txt}{space 4}bmicat1c {c |}{res}      6,814    2.071177    .8437681          1          4
+{txt}{hline 13}{c +}{hline 57}
+{space 4}agatum1c {c |}{res}      6,814    149.8118    422.6841          0    6452.61
+{txt}{space 5}volum1c {c |}{res}      6,814    131.7948    354.1546          0    5063.76
+{txt}{space 4}volsum1c {c |}{res}      6,814     115.879    328.0062          0    4975.24
+{txt}{space 4}agatpm1c {c |}{res}      6,814    146.0716    417.2086          0    6315.91
+{txt}{space 5}volpm1c {c |}{res}      6,814    128.5902    349.7062          0    4991.94
+{txt}{hline 13}{c +}{hline 57}
+{space 4}volspm1c {c |}{res}      6,814    114.4345    324.9526          0   4932.005
+{txt}{space 4}agatu11c {c |}{res}      6,813    150.0066    424.4052          0    6647.01
+{txt}{space 5}volu11c {c |}{res}      6,814    132.0089    356.0961          0    5293.68
+{txt}{space 4}volsu11c {c |}{res}      6,812    115.8902    329.0201          0    5145.84
+{txt}{space 4}agatp11c {c |}{res}      6,813      146.45    419.6199          0    6521.29
+{txt}{hline 13}{c +}{hline 57}
+{space 5}volp11c {c |}{res}      6,814    128.8908    352.0281          0    5181.52
+{txt}{space 4}volsp11c {c |}{res}      6,812    114.4614    326.1576          0    5114.68
+{txt}{space 5}phok11c {c |}{res}      6,814    .9603757    .1950892          0          1
+{txt}{space 4}agatu21c {c |}{res}      6,745    149.5378    423.6724          0    6741.39
+{txt}{space 5}volu21c {c |}{res}      6,745    131.4648    354.4456          0    5366.58
+{txt}{hline 13}{c +}{hline 57}
+{space 4}volsu21c {c |}{res}      6,744    115.5451    328.2446          0    5196.92
+{txt}{space 4}agatp21c {c |}{res}      6,745    145.6698    417.6732          0    6792.34
+{txt}{space 5}volp21c {c |}{res}      6,745    128.2247    349.7632          0    5429.67
+{txt}{space 4}volsp21c {c |}{res}      6,744    114.1005    325.0262          0    5211.29
+{txt}{space 5}phok21c {c |}{res}      6,746    .9626445    .1896454          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 6}cacq1c {c |}{res}      3,398    .7056812     .215239   .0147916   .9999171
+{txt}{space 2}prcacgt01c {c |}{res}      6,814    .4879348    .2395004   .0408129          1
+{txt}{space 4}ecglvh1c {c |}{res}      6,765    .0100517    .0997606          0          1
+{txt}{space 6}afib1c {c |}{res}      6,765    .0001478    .0121581          0          1
+{txt}{space 5}minor11 {c |}{res}        385           1           0          1          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}minor21 {c |}{res}        837           1           0          1          1
+{txt}{space 5}minor31 {c |}{res}        513           1           0          1          1
+{txt}{space 4}minor4l1 {c |}{res}         42           1           0          1          1
+{txt}{space 4}minor4f1 {c |}{res}         55           1           0          1          1
+{txt}{space 4}minor4v1 {c |}{res}        202           1           0          1          1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}minor5l1 {c |}{res}      1,156           1           0          1          1
+{txt}{space 4}minor5r1 {c |}{res}        154           1           0          1          1
+{txt}{space 5}minor61 {c |}{res}        119    1.991597    .0916698          1          2
+{txt}{space 5}minor71 {c |}{res}         69           1           0          1          1
+{txt}{space 5}minor81 {c |}{res}        313           1           0          1          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}minor91 {c |}{res}          1           1           .          1          1
+{txt}{space 4}minor101 {c |}{res}        117           1           0          1          1
+{txt}{space 3}minor11a1 {c |}{res}        221           1           0          1          1
+{txt}{space 3}minor11b1 {c |}{res}        211     1.07109    .2922299          1          3
+{txt}{space 3}minor11c1 {c |}{res}         39           1           0          1          1
+{txt}{hline 13}{c +}{hline 57}
+{space 3}minor11d1 {c |}{res}          0
+{txt}{space 3}minor11e1 {c |}{res}          0
+{txt}{space 3}minor11f1 {c |}{res}        133           1           0          1          1
+{txt}{space 3}minor11g1 {c |}{res}         13           1           0          1          1
+{txt}{space 5}major11 {c |}{res}        297    2.373737    .7294832          1          4
+{txt}{hline 13}{c +}{hline 57}
+{space 5}major21 {c |}{res}        158           1           0          1          1
+{txt}{space 5}major31 {c |}{res}         20           1           0          1          1
+{txt}{space 5}major41 {c |}{res}        284           1           0          1          1
+{txt}{space 5}major51 {c |}{res}         78           1           0          1          1
+{txt}{space 5}major61 {c |}{res}          0
+{txt}{hline 13}{c +}{hline 57}
+{space 4}major7a1 {c |}{res}          3    2.333333    1.154701          1          3
+{txt}{space 4}major7b1 {c |}{res}          0
+{txt}{space 4}major7c1 {c |}{res}          0
+{txt}{space 4}major7d1 {c |}{res}          1           1           .          1          1
+{txt}{space 5}major81 {c |}{res}         31           1           0          1          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}major91 {c |}{res}          0
+{txt}{space 3}major10a1 {c |}{res}          0
+{txt}{space 3}major10b1 {c |}{res}          1           1           .          1          1
+{txt}{space 3}major10c1 {c |}{res}          0
+{txt}{space 4}majabn1c {c |}{res}      6,766    .1279929    .3341066          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}minabn1c {c |}{res}      6,766    .3813184    .4857464          0          1
+{txt}{space 4}hrtrate1 {c |}{res}      6,766    63.13139    9.657782         36        130
+{txt}{space 4}qktempr1 {c |}{res}      6,785    1.600884     .626554          1          4
+{txt}{space 4}frtempr1 {c |}{res}      6,778    1.306138    .5391237          1          4
+{txt}{space 4}hothead1 {c |}{res}      6,773     1.30282    .5873137          1          4
+{txt}{hline 13}{c +}{hline 57}
+{space 6}angry1 {c |}{res}      6,783    1.674333    .6318492          1          4
+{txt}{space 4}annoyed1 {c |}{res}      6,779    1.596696    .6643302          1          4
+{txt}{space 5}flyoff1 {c |}{res}      6,769    1.298567    .5127794          1          4
+{txt}{space 6}nasty1 {c |}{res}      6,772    1.453042    .6032535          1          4
+{txt}{space 4}furious1 {c |}{res}      6,784    1.748084     .786934          1          4
+{txt}{hline 13}{c +}{hline 57}
+{space 5}fruhit1 {c |}{res}      6,783    1.099661    .3379621          1          4
+{txt}{space 4}infurat1 {c |}{res}      6,775     1.66952    .7662284          1          4
+{txt}{space 5}steady1 {c |}{res}      6,770    3.406499    .8765855          1          4
+{txt}{space 5}satisf1 {c |}{res}      6,780    3.222271    .9031943          1          4
+{txt}{space 4}nervous1 {c |}{res}      6,770    1.651108     .675196          1          4
+{txt}{hline 13}{c +}{hline 57}
+{space 4}unhappy1 {c |}{res}      6,773    1.668537    .8577902          1          4
+{txt}{space 4}failure1 {c |}{res}      6,769    1.293987    .5700055          1          4
+{txt}{space 4}turmoil1 {c |}{res}      6,774     1.52731     .699966          1          4
+{txt}{space 5}secure1 {c |}{res}      6,773    3.288056    .9518071          1          4
+{txt}{space 5}noconf1 {c |}{res}      6,767     1.52623    .7166668          1          4
+{txt}{hline 13}{c +}{hline 57}
+{space 4}inadeqt1 {c |}{res}      6,770    1.438109     .685257          1          4
+{txt}{space 6}worry1 {c |}{res}      6,774    1.697815    .7918106          1          4
+{txt}{space 4}hprb1pt1 {c |}{res}      6,781    .2110308    .4080703          0          1
+{txt}{space 4}hprb2pt1 {c |}{res}      6,776    .1940673    .3955101          0          1
+{txt}{space 4}hprb3pt1 {c |}{res}      1,507    1.973457    .7247009          1          3
+{txt}{hline 13}{c +}{hline 57}
+{space 4}hprb1ot1 {c |}{res}      6,781    .3888807    .4875321          0          1
+{txt}{space 4}hprb2ot1 {c |}{res}      6,759    .3527149    .4778503          0          1
+{txt}{space 4}hprb3ot1 {c |}{res}      2,679    2.008585    .7001554          1          3
+{txt}{space 4}job1prb1 {c |}{res}      6,782    .1428782    .3499744          0          1
+{txt}{space 4}job2prb1 {c |}{res}      6,776    .1245573    .3302406          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}job3prb1 {c |}{res}      1,046    2.128107    .6977981          1          3
+{txt}{space 4}mon1prb1 {c |}{res}      6,775    .2506273    .4334063          0          1
+{txt}{space 4}mon2prb1 {c |}{res}      6,758    .2249186    .4175596          0          1
+{txt}{space 4}mon3prb1 {c |}{res}      1,773      1.9859    .7160871          1          3
+{txt}{space 4}rel1prb1 {c |}{res}      6,787     .225431    .4178966          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}rel2prb1 {c |}{res}      6,767    .2036353    .4027306          0          1
+{txt}{space 4}rel3prb1 {c |}{res}      1,592     2.06093     .703359          1          3
+{txt}{space 5}bother1 {c |}{res}      6,779    1.300487     .633354          1          4
+{txt}{space 5}noteat1 {c |}{res}      6,778    1.181617    .5252134          1          4
+{txt}{space 7}blue1 {c |}{res}      6,774    1.221583    .5850649          1          4
+{txt}{hline 13}{c +}{hline 57}
+{space 5}asgood1 {c |}{res}      6,779    3.333825    1.114932          1          4
+{txt}{space 4}concntr1 {c |}{res}      6,778    1.414872    .7150835          1          4
+{txt}{space 4}depress1 {c |}{res}      6,773    1.344751    .6938262          1          4
+{txt}{space 5}effort1 {c |}{res}      6,777    1.487089    .8338259          1          4
+{txt}{space 4}hopeful1 {c |}{res}      6,767     3.24782    1.062863          1          4
+{txt}{hline 13}{c +}{hline 57}
+{space 5}lffail1 {c |}{res}      6,771    1.173682     .526653          1          4
+{txt}{space 4}fearful1 {c |}{res}      6,764    1.214075    .5478737          1          4
+{txt}{space 5}badslp1 {c |}{res}      6,769     1.67233    .9063106          1          4
+{txt}{space 6}happy1 {c |}{res}      6,773    3.387273    .9104291          1          4
+{txt}{space 4}lestalk1 {c |}{res}      6,763    1.442851    .7699493          1          4
+{txt}{hline 13}{c +}{hline 57}
+{space 5}lonely1 {c |}{res}      6,762    1.370748    .7363142          1          4
+{txt}{space 4}unfrnly1 {c |}{res}      6,765    1.202069    .5457717          1          4
+{txt}{space 4}enjlife1 {c |}{res}      6,776    3.492326    .8837693          1          4
+{txt}{space 4}cryspel1 {c |}{res}      6,771    1.146507    .4883676          1          4
+{txt}{space 8}sad1 {c |}{res}      6,782    1.363757    .6662057          1          4
+{txt}{hline 13}{c +}{hline 57}
+{space 4}dislikd1 {c |}{res}      6,773    1.141887    .4492309          1          4
+{txt}{space 4}getgoin1 {c |}{res}      6,771    1.364348    .6701213          1          4
+{txt}{space 5}talkto1 {c |}{res}      6,784    4.207252    .9849676          1          5
+{txt}{space 5}advice1 {c |}{res}      6,780    4.067994     1.04308          1          5
+{txt}{space 4}affectn1 {c |}{res}      6,783    4.330827    .9751879          1          5
+{txt}{hline 13}{c +}{hline 57}
+{space 5}hlpchr1 {c |}{res}      6,782     3.36361    1.463378          1          5
+{txt}{space 5}emospt1 {c |}{res}      6,782    4.132704    1.089057          1          5
+{txt}{space 4}confide1 {c |}{res}      6,781    4.064445    1.093615          1          5
+{txt}{space 4}uf1fire1 {c |}{res}      6,785    .2428887      .42886          0          1
+{txt}{space 4}uf2fire1 {c |}{res}      1,657    5.053712    3.200074          1          8
+{txt}{hline 13}{c +}{hline 57}
+{space 4}uf3fire1 {c |}{res}      6,759    .0429058    .2026596          0          1
+{txt}{space 4}uf1hire1 {c |}{res}      6,751    .1741964    .3793064          0          1
+{txt}{space 4}uf2hire1 {c |}{res}      1,197    3.538012    2.908229          1          8
+{txt}{space 4}uf3hire1 {c |}{res}      6,749    .0280041    .1649968          0          1
+{txt}{space 4}uf1stop1 {c |}{res}      6,747    .1169409    .3213736          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}uf2stop1 {c |}{res}        801    3.363296    3.097031          1          8
+{txt}{space 4}uf3stop1 {c |}{res}      6,751    .0207377    .1425154          0          1
+{txt}{space 4}uf1educ1 {c |}{res}      6,762    .0791186    .2699437          0          1
+{txt}{space 4}uf2educ1 {c |}{res}        541    4.158965    3.149465          1          8
+{txt}{space 4}uf3educ1 {c |}{res}      6,765    .0029564    .0542963          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}uf1move1 {c |}{res}      6,780    .0573746    .2325742          0          1
+{txt}{space 4}uf2move1 {c |}{res}        392    2.752551    2.871946          1          8
+{txt}{space 4}uf3move1 {c |}{res}      6,774    .0032477    .0569003          0          1
+{txt}{space 4}uf1nghb1 {c |}{res}      6,776      .06951    .2543382          0          1
+{txt}{space 4}uf2nghb1 {c |}{res}        478    5.154812    3.280252          1          8
+{txt}{hline 13}{c +}{hline 57}
+{space 4}curtesy1 {c |}{res}      6,783    5.091552    1.120185          1          6
+{txt}{space 4}respect1 {c |}{res}      6,782    5.205839    1.067177          1          6
+{txt}{space 4}service1 {c |}{res}      6,778    5.352169    .8885324          1          6
+{txt}{space 6}smart1 {c |}{res}      6,779    5.373506    .9866535          1          6
+{txt}{space 5}afraid1 {c |}{res}      6,773     5.53979    .9128057          1          6
+{txt}{hline 13}{c +}{hline 57}
+{space 5}dishon1 {c |}{res}      6,783    5.638066    .7775654          1          6
+{txt}{space 5}better1 {c |}{res}      6,778    5.004721     1.12819          1          6
+{txt}{space 5}insult1 {c |}{res}      6,777    5.601003    .8017021          1          6
+{txt}{space 5}threat1 {c |}{res}      6,770    5.729838    .6613748          1          6
+{txt}{space 4}uf1resp1 {c |}{res}      6,756    1.624482    .4842922          1          2
+{txt}{hline 13}{c +}{hline 57}
+{space 4}uf2resp1 {c |}{res}      6,750    1.190963    .3930891          1          2
+{txt}{space 5}hlfadm1 {c |}{res}      6,750    1.255852    .4363713          1          2
+{txt}{space 4}uf3nghb1 {c |}{res}      6,766    .0137452      .11644          0          1
+{txt}{space 4}splang1c {c |}{res}      6,782    14.74668    3.658131         10         40
+{txt}{space 4}chrbur1c {c |}{res}      6,753    1.218273    1.205135          0          5
+{txt}{hline 13}{c +}{hline 57}
+{space 4}chrbu61c {c |}{res}      6,683    1.094868    1.162227          0          5
+{txt}{space 6}cesd1c {c |}{res}      6,778    7.577752    7.591005          0         53
+{txt}{space 6}emot1c {c |}{res}      6,768    24.16563    5.278043          6         30
+{txt}{space 4}discrl1c {c |}{res}      6,695    .7405527    1.078648          0          6
+{txt}{space 4}discry1c {c |}{res}      6,621    .1085939    .3821787          0          4
+{txt}{hline 13}{c +}{hline 57}
+{space 5}hassl1c {c |}{res}      6,743    14.47293    6.011075          9         54
+{txt}{space 4}splanx1c {c |}{res}      6,775    15.88815    4.512414         10         37
+{txt}{space 7}trig1 {c |}{res}      6,791    131.5936    88.80062         21       2256
+{txt}{space 4}glucos1c {c |}{res}      6,789    97.37679     30.2758         38        507
+{txt}{space 8}ldl1 {c |}{res}      6,701    117.2018    31.46297         12        315
+{txt}{hline 13}{c +}{hline 57}
+{space 8}hdl1 {c |}{res}      6,788     50.9586    14.82847         15        142
+{txt}{space 4}creatin1 {c |}{res}      6,789    .9552511    .2848216         .2         10
+{txt}{space 7}chol1 {c |}{res}      6,791    194.1551    35.73343         65        515
+{txt}{space 4}chlcat1c {c |}{res}      6,791    1.506406    .6650846          1          3
+{txt}{space 4}ldlcat1c {c |}{res}      6,701     2.14177    .9766925          1          5
+{txt}{hline 13}{c +}{hline 57}
+{space 4}hdlcat1c {c |}{res}      6,788    1.985121    .6775241          1          3
+{txt}{space 4}trgcat1c {c |}{res}      6,791    1.446915    .7475648          1          4
+{txt}{space 4}cepgfr1c {c |}{res}      6,789    78.04256    16.33607   5.240909   175.8677
+{txt}{space 5}hcytot1 {c |}{res}      6,794    9.332661    3.749767        3.2        118
+{txt}{space 7}cpn1c {c |}{res}          0
+{txt}{hline 13}{c +}{hline 57}
+{space 4}cpntite1 {c |}{res}      6,790    1.501473    1.036631          0          4
+{txt}{space 4}inslnr1t {c |}{res}      6,784    10.41405    16.23649       1.17     853.83
+{txt}{space 4}vldlp31c {c |}{res}      6,786    67.67769    37.05933         .4      405.8
+{txt}{space 8}vl31 {c |}{res}      6,786    5.004332    6.442994          0       55.9
+{txt}{space 8}vm31 {c |}{res}      6,786    28.73333    21.79344          0      182.9
+{txt}{hline 13}{c +}{hline 57}
+{space 8}vs31 {c |}{res}      6,786    33.94123    19.92873          0      208.7
+{txt}{space 5}ldlp31c {c |}{res}      6,786    1247.676    338.6566        200       3492
+{txt}{space 7}idl31 {c |}{res}      6,786    125.9766    98.83929          0       1069
+{txt}{space 8}ll31 {c |}{res}      6,786    586.7303      259.08          0       1644
+{txt}{space 8}ls31 {c |}{res}      6,786     534.973    382.1833          0       2973
+{txt}{hline 13}{c +}{hline 57}
+{space 5}hdlp31c {c |}{res}      6,786    34.02888    6.638939       14.4       62.7
+{txt}{space 8}hl31 {c |}{res}      6,786    6.019246    3.458173          0         25
+{txt}{space 8}hm31 {c |}{res}      6,786     13.2705     6.83567          0       54.2
+{txt}{space 8}hs31 {c |}{res}      6,786    14.74038    5.730646          0       44.9
+{txt}{space 8}vz31 {c |}{res}      6,301    48.68713    8.032963       32.3       81.6
+{txt}{hline 13}{c +}{hline 57}
+{space 8}lz31 {c |}{res}      6,781     20.7447     .551421       19.4         23
+{txt}{space 8}hz31 {c |}{res}      6,786    9.254775    .4576751        8.2       11.7
+{txt}{space 5}ntrg31c {c |}{res}      6,786     135.065    69.89275         36        757
+{txt}{space 4}nvtrg31c {c |}{res}      6,786    98.25433    69.41251        7.8        687
+{txt}{space 4}nhdlc31c {c |}{res}      6,786    50.71692    15.47803         16        148
+{txt}{hline 13}{c +}{hline 57}
+{space 4}lp3lpir1 {c |}{res}      6,786    43.74344    23.60717          0        100
+{txt}{space 4}lpcomm31 {c |}{res}          0
+{txt}{space 8}il61 {c |}{res}      6,622    1.557897    1.225313     .12924     12.999
+{txt}{space 8}pap1 {c |}{res}      6,627    4.793423    2.191379    .221215   54.15637
+{txt}{space 8}fib1 {c |}{res}      6,767     346.811    73.94995        144        945
+{txt}{hline 13}{c +}{hline 57}
+{space 8}crp1 {c |}{res}      6,762    3.781599    5.885725        .15       97.4
+{txt}{space 5}ddimer1 {c |}{res}      6,769    .3754956    .8650972        .01         20
+{txt}{space 9}f81 {c |}{res}      6,765    163.9463    67.00174         20        500
+{txt}{space 8}f81c {c |}{res}      6,765    99.12919    37.60783         18        288
+{txt}{space 6}cd40l1 {c |}{res}        999    4.067111    2.685439        .25       24.6
+{txt}{hline 13}{c +}{hline 57}
+{space 4}eselect1 {c |}{res}        999    54.68654     25.3143      4.652     201.37
+{txt}{space 6}il2sr1 {c |}{res}      2,885     980.408    461.7297       -888       5081
+{txt}{space 7}mmp31 {c |}{res}        999     15.6473    14.57672       2.26     123.11
+{txt}{space 7}mmp91 {c |}{res}        999    245.3329    142.4849       34.2     1351.6
+{txt}{space 6}tnfri1 {c |}{res}      2,885     1366.98    458.5672       -888       5544
+{txt}{hline 13}{c +}{hline 57}
+{space 8}hsv1 {c |}{res}        999    69.00801    32.94758          0      150.8
+{txt}{space 7}hsv1c {c |}{res}          0
+{txt}{space 8}cmv1 {c |}{res}        999    93.43013    77.39313          0      294.2
+{txt}{space 7}cmv1c {c |}{res}          0
+{txt}{space 4}hpylori1 {c |}{res}        999     2.12002     2.41585         .1       13.8
+{txt}{hline 13}{c +}{hline 57}
+{space 4}hpylor1c {c |}{res}          0
+{txt}{space 6}havab1 {c |}{res}        999    154.2773    166.6451        3.7      456.8
+{txt}{space 5}havab1c {c |}{res}          0
+{txt}{space 8}pai1 {c |}{res}        973    27.09661    27.71123          2        357
+{txt}{space 8}stf1 {c |}{res}        993    123.6083     85.8772          2        715
+{txt}{hline 13}{c +}{hline 57}
+{space 7}tfpi1 {c |}{res}        995    48.56884    14.27814         15        100
+{txt}{space 8}stm1 {c |}{res}        997    37.41825    19.37525          1        259
+{txt}{space 7}rlpc1 {c |}{res}        999    10.26694    12.98524      2.904     234.18
+{txt}{space 7}hdl11 {c |}{res}        999    12.78689    4.929653          0       28.9
+{txt}{space 7}hdl21 {c |}{res}        999    9.451451     4.67063          0         30
+{txt}{hline 13}{c +}{hline 57}
+{space 7}hdl31 {c |}{res}        999     11.5961    2.785522          0       29.3
+{txt}{space 7}hdl41 {c |}{res}        999    13.83423    2.307887        6.6       23.5
+{txt}{space 7}hdl51 {c |}{res}        999    23.00541    4.105892          9       40.1
+{txt}{space 7}hdl61 {c |}{res}        999    7.569469    1.748747          0       11.7
+{txt}{space 7}hdl71 {c |}{res}        999    9.027628    2.733372        1.2       21.6
+{txt}{hline 13}{c +}{hline 57}
+{space 7}hdl81 {c |}{res}        999    5.513013    2.297915          0       14.5
+{txt}{space 5}hdl1md1 {c |}{res}        997    6.932798    4.263944          0         29
+{txt}{space 5}hdl2md1 {c |}{res}        997    5.281846     3.88383          0         28
+{txt}{space 5}hdl3md1 {c |}{res}        997    6.131394    2.942178          0         22
+{txt}{space 5}hdl4md1 {c |}{res}        997    6.885657     1.58525          3         13
+{txt}{hline 13}{c +}{hline 57}
+{space 5}hdl5md1 {c |}{res}        997    11.40622    2.639764          4         24
+{txt}{space 5}hdl6md1 {c |}{res}        997    3.745236      1.0429          0          8
+{txt}{space 5}hdl7md1 {c |}{res}        997    4.404213    1.316448          1         10
+{txt}{space 5}hdl8md1 {c |}{res}        997    2.612839     .903227          0          7
+{txt}{space 4}anthsp61 {c |}{res}        998    24009.96    39429.78       2248     461730
+{txt}{hline 13}{c +}{hline 57}
+{space 6}ceact1 {c |}{res}        982    40.19996    12.63183       9.83   86.91527
+{txt}{space 5}cemass1 {c |}{res}        999    1.742058    .5258061        .61       3.91
+{txt}{space 8}vwf1 {c |}{res}        997     139.344    56.72006          2        374
+{txt}{space 6}oxldl1 {c |}{res}        999    .9624867     .709396          0   6.831402
+{txt}{space 7}icam1 {c |}{res}      2,622    274.2423    78.45337     17.852      882.8
+{txt}{hline 13}{c +}{hline 57}
+{space 5}emphys1 {c |}{res}      6,813     .024512    .3128925          0          9
+{txt}{space 5}asthma1 {c |}{res}      6,812    .1178802    .5124127          0          9
+{txt}{space 4}arthrit1 {c |}{res}      6,812    .4552261    1.015035          0          9
+{txt}{space 5}cancer1 {c |}{res}      6,804    .0867137    .3777664          0          9
+{txt}{space 4}prostcn1 {c |}{res}      6,814    .0161432    .1626438          0          9
+{txt}{hline 13}{c +}{hline 57}
+{space 5}brstcn1 {c |}{res}      6,814    .0148224    .1586597          0          9
+{txt}{space 4}coloncn1 {c |}{res}      6,814    .0067508    .1314315          0          9
+{txt}{space 4}nmskncn1 {c |}{res}      6,814    .0250954    .2135539          0          9
+{txt}{space 6}othcn1 {c |}{res}      6,814    .0248019    .1864359          0          9
+{txt}{space 5}rheuhv1 {c |}{res}      6,813    .0695729    .6512356          0          9
+{txt}{hline 13}{c +}{hline 57}
+{space 4}bldclot1 {c |}{res}      6,811    .0497724    .5189687          0          9
+{txt}{space 5}liverd1 {c |}{res}      6,807    .0649332    .5513987          0          9
+{txt}{space 6}hepat1 {c |}{res}      6,778    .0427855    .3549004          0          9
+{txt}{space 5}heptpa1 {c |}{res}      6,813    .0064582    .0801091          0          1
+{txt}{space 5}heptpb1 {c |}{res}      6,813    .0086599    .0926616          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}heptpc1 {c |}{res}      6,813    .0070454    .0836465          0          1
+{txt}{space 5}heptpu1 {c |}{res}      6,768    .0082742    .0905924          0          1
+{txt}{space 4}kdnydis1 {c |}{res}      6,812    .0518203    .5406277          0          9
+{txt}{space 5}highbp1 {c |}{res}      6,809    .4078426    .5982276          0          9
+{txt}{space 4}bphxage1 {c |}{res}      2,245    54.39866    12.17589         12         83
+{txt}{hline 13}{c +}{hline 57}
+{space 4}bpmageu1 {c |}{res}         19           9           0          9          9
+{txt}{space 4}hghchol1 {c |}{res}      6,809    .4137171    .7552751          0          9
+{txt}{space 4}cholage1 {c |}{res}      1,086    61.16943    9.492603         32         84
+{txt}{space 4}chlageu1 {c |}{res}         14           9           0          9          9
+{txt}{space 5}diabet1 {c |}{res}      6,812    .1214034    .4124404          0          9
+{txt}{hline 13}{c +}{hline 57}
+{space 4}dbhxtyp1 {c |}{res}        662    1.817221    .3867778          1          2
+{txt}{space 6}dbage1 {c |}{res}        587     55.2402    11.45678         12         84
+{txt}{space 5}dbageu1 {c |}{res}          5           9           0          9          9
+{txt}{space 4}dbinsul1 {c |}{res}        564    .1613475    .7205649          0          9
+{txt}{space 4}hwt3ylb1 {c |}{res}      6,807    179.0663    39.31891         93        315
+{txt}{hline 13}{c +}{hline 57}
+{space 5}wt20lb1 {c |}{res}      6,788    135.3707    27.44604         80        250
+{txt}{space 5}wt40lb1 {c |}{res}      6,795    154.8912    31.61555         85        280
+{txt}{space 7}preg1 {c |}{res}      3,598     .876876    .3577865          0          9
+{txt}{space 6}pregn1 {c |}{res}      3,151    3.590606    2.172401          1         12
+{txt}{space 5}birthn1 {c |}{res}      3,151    2.850841     1.93431          0         10
+{txt}{hline 13}{c +}{hline 57}
+{space 4}agebrth1 {c |}{res}      2,956    23.32984    5.118872         14         41
+{txt}{space 4}hystrct1 {c |}{res}      3,599    .3553765    .5188159          0          9
+{txt}{space 4}hystage1 {c |}{res}      1,247    42.81075    8.984619         22         69
+{txt}{space 5}ovarem1 {c |}{res}      3,600    .4186111    1.289898          0          9
+{txt}{space 5}ovaage1 {c |}{res}        862    43.19026    9.962695         19         70
+{txt}{hline 13}{c +}{hline 57}
+{space 4}ovaremn1 {c |}{res}        855     1.71345    .4524139          1          2
+{txt}{space 4}bcpills1 {c |}{res}      3,599    .4970825    .5917065          0          9
+{txt}{space 4}bpillyr1 {c |}{res}      1,723    6.432966    6.419836          0         45
+{txt}{space 4}mnpause1 {c |}{res}      3,598    1.184825    1.644199          0          9
+{txt}{space 6}menop1 {c |}{res}      3,572    .3664614    1.609732          0          9
+{txt}{hline 13}{c +}{hline 57}
+{space 4}prdsnum1 {c |}{res}        243    6.794239    5.045951          0         19
+{txt}{space 4}menoage1 {c |}{res}      3,051    47.67126    6.335207         25         62
+{txt}{space 5}hrmrep1 {c |}{res}      3,272    .5033619    .5000651          0          1
+{txt}{space 4}hrmrepc1 {c |}{res}      3,246    .3170055    .4653813          0          1
+{txt}{space 4}hrmage1c {c |}{res}      1,618    50.80964    8.670615         28         76
+{txt}{hline 13}{c +}{hline 57}
+{space 4}hrmqage1 {c |}{res}        587    55.52129    8.826396         38         78
+{txt}{space 5}hrmtyp1 {c |}{res}      1,076    1.378253    .4851767          1          2
+{txt}{space 4}legpain1 {c |}{res}      6,813    .2445325    .4298412          0          1
+{txt}{space 5}lprest1 {c |}{res}      6,786    .1483938    .3555161          0          1
+{txt}{space 5}lpcalf1 {c |}{res}      1,678    1.444577    .4970669          1          2
+{txt}{hline 13}{c +}{hline 57}
+{space 5}lpuphl1 {c |}{res}      6,810    .2161527    .8390722          0          8
+{txt}{space 5}lpnorm1 {c |}{res}      6,806    .1316485    .3381331          0          1
+{txt}{space 6}lpdis1 {c |}{res}      6,793    .1598705    .3665128          0          1
+{txt}{space 5}lpstop1 {c |}{res}      1,666    1.456783    .4982783          1          2
+{txt}{space 5}lpstnd1 {c |}{res}      1,643    1.341449    .4743399          1          2
+{txt}{hline 13}{c +}{hline 57}
+{space 5}lprelv1 {c |}{res}      1,087     .825207    .3799648          0          1
+{txt}{space 6}lploc1 {c |}{res}      1,661     2.07646    .8457155          1          3
+{txt}{space 5}swllft1 {c |}{res}      6,806    .3308845    .6079135          0          9
+{txt}{space 4}swllday1 {c |}{res}      6,737    .3425857    1.059772          0          9
+{txt}{space 4}slppllw1 {c |}{res}      6,801    .1095427    .5063408          0          9
+{txt}{hline 13}{c +}{hline 57}
+{space 5}wakebr1 {c |}{res}      6,788    .1470242    .6740108          0          9
+{txt}{space 6}fever1 {c |}{res}      6,812    .0383147    .4174648          0          9
+{txt}{space 4}coldflu1 {c |}{res}      6,810    .1669604    .6183143          0          9
+{txt}{space 4}urininf1 {c |}{res}      6,810    .0603524    .6613554          0          9
+{txt}{space 5}allrgy1 {c |}{res}      6,809    .3327948    1.126534          0          9
+{txt}{hline 13}{c +}{hline 57}
+{space 5}bronch1 {c |}{res}      6,811    .0490383    .5383421          0          9
+{txt}{space 4}sinuinf1 {c |}{res}      6,811    .1998238    1.039106          0          9
+{txt}{space 5}pneumo1 {c |}{res}      6,807     .003232    .1561403          0          9
+{txt}{space 4}bldgums1 {c |}{res}      6,811    .1534283    .4854215          0          9
+{txt}{space 5}tthinf1 {c |}{res}      6,810    .0839941    .7218507          0          9
+{txt}{hline 13}{c +}{hline 57}
+{space 7}gout1 {c |}{res}      6,810    .0390602    .5397423          0          9
+{txt}{space 4}arth2wk1 {c |}{res}      6,807     .243279    1.035736          0          9
+{txt}{space 6}abnum1 {c |}{res}      6,443    .8058358    1.149092          0         10
+{txt}{space 7}noab1 {c |}{res}        353           0           0          0          0
+{txt}{space 4}ab5ynum1 {c |}{res}      6,494    2.853865    3.611896          0         25
+{txt}{hline 13}{c +}{hline 57}
+{space 5}noab5y1 {c |}{res}        300           0           0          0          0
+{txt}{space 4}aspirin1 {c |}{res}      6,811     .323741    .5412705          0          9
+{txt}{space 4}aspsage1 {c |}{res}      2,134    57.93627    13.88053          0         84
+{txt}{space 5}aspnow1 {c |}{res}      6,771    .2411756    .4520036          0          9
+{txt}{space 4}aspdays1 {c |}{res}      1,645    6.116109    1.673615          0          7
+{txt}{hline 13}{c +}{hline 57}
+{space 4}aspeage1 {c |}{res}        463    57.08207    13.38999          0         83
+{txt}{space 5}gumdis1 {c |}{res}      6,811    .3743944     1.04434          0          9
+{txt}{space 4}losttth1 {c |}{res}      6,807    .2557661    1.145313          0          9
+{txt}{space 5}tthnum1 {c |}{res}        773     11.5097    10.91412          1         32
+{txt}{space 8}pmi1 {c |}{res}      6,812    .8109219    1.997667          0          9
+{txt}{hline 13}{c +}{hline 57}
+{space 7}pstk1 {c |}{res}      6,810    .6741557    1.835981          0          9
+{txt}{space 4}shrtatt1 {c |}{res}      6,808    .9152468    2.405374          0          9
+{txt}{space 7}sstk1 {c |}{res}      6,807    .7955046    2.313745          0          9
+{txt}{space 4}chrtatt1 {c |}{res}      6,810    1.389868    3.023915          0          9
+{txt}{space 7}cstk1 {c |}{res}      6,802    1.374743    3.014053          0          9
+{txt}{hline 13}{c +}{hline 57}
+{space 6}fhha1c {c |}{res}      6,395    .4275215    .4947577          0          1
+{txt}{space 4}asacat1c {c |}{res}      6,528    .1988358    .3991548          0          1
+{txt}{space 4}whoros1c {c |}{res}      6,197    .0051638    .0716795          0          1
+{txt}{space 4}htnmed1c {c |}{res}      6,811    .3723389    .4834635          0          1
+{txt}{space 4}totmed1c {c |}{res}      6,808    3.247944    2.876669          0         15
+{txt}{hline 13}{c +}{hline 57}
+{space 7}a2a1c {c |}{res}      6,811    .0343562    .1821557          0          1
+{txt}{space 6}a2ad1c {c |}{res}      6,811      .01894     .136323          0          1
+{txt}{space 7}ace1c {c |}{res}      6,811    .1186316    .3233783          0          1
+{txt}{space 6}aced1c {c |}{res}      6,811    .0115989    .1070796          0          1
+{txt}{space 6}adpi1c {c |}{res}      6,811     .002496    .0499009          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 6}agdi1c {c |}{res}      6,811    .0008809    .0296695          0          1
+{txt}{space 5}alpha1c {c |}{res}      6,811    .0384672    .1923354          0          1
+{txt}{space 4}alphad1c {c |}{res}      6,811           0           0          0          0
+{txt}{space 6}alzh1c {c |}{res}      6,811    .0011746    .0342544          0          1
+{txt}{space 5}amlod1c {c |}{res}      6,811    .0547644    .2275364          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 7}asa1c {c |}{res}      6,811    .2498899    .4329809          0          1
+{txt}{space 6}basq1c {c |}{res}      6,811    .0049919    .0704822          0          1
+{txt}{space 4}benzod1c {c |}{res}      6,811    .0330348    .1787406          0          1
+{txt}{space 6}beta1c {c |}{res}      6,811    .0898546    .2859944          0          1
+{txt}{space 5}betad1c {c |}{res}      6,811    .0054324    .0735097          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 6}bgnd1c {c |}{res}      6,811     .049332    .2165761          0          1
+{txt}{space 7}ccb1c {c |}{res}      6,811    .1230363    .3285029          0          1
+{txt}{space 5}ccbir1c {c |}{res}      6,811     .005726    .0754591          0          1
+{txt}{space 5}ccbsr1c {c |}{res}      6,811    .1180443    .3226843          0          1
+{txt}{space 6}ccbt1c {c |}{res}      6,811           0           0          0          0
+{txt}{hline 13}{c +}{hline 57}
+{space 6}cox21c {c |}{res}      6,811    .0692997    .2539817          0          1
+{txt}{space 7}dig1c {c |}{res}      6,811    .0038174    .0616712          0          1
+{txt}{space 5}dihir1c {c |}{res}      6,811           0           0          0          0
+{txt}{space 5}dihsr1c {c |}{res}      6,811    .0096902    .0979679          0          1
+{txt}{space 5}dltir1c {c |}{res}      6,811    .0019087    .0436499          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}dltsr1c {c |}{res}      6,811    .0155631    .1237865          0          1
+{txt}{space 7}edd1c {c |}{res}      6,811    .0157099    .1243598          0          1
+{txt}{space 4}estrgn1c {c |}{res}      6,811    .1450595    .3521866          0          1
+{txt}{space 6}fibr1c {c |}{res}      6,811    .0114521    .1064076          0          1
+{txt}{space 7}h2b1c {c |}{res}      6,811    .0480106    .2138043          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 6}hctz1c {c |}{res}      6,811    .0722361    .2588974          0          1
+{txt}{space 5}hctzk1c {c |}{res}      6,811    .0390545    .1937388          0          1
+{txt}{space 5}hprns1c {c |}{res}      6,811           0           0          0          0
+{txt}{space 5}insln1c {c |}{res}      6,811    .0179122    .1326421          0          1
+{txt}{space 5}iprtr1c {c |}{res}      6,811    .0070474    .0836587          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}istrd1c {c |}{res}      6,811    .0215827    .1453273          0          1
+{txt}{space 5}kblkr1c {c |}{res}      6,811    .0022023    .0468806          0          1
+{txt}{space 7}kcl1c {c |}{res}      6,811    .0196741    .1388878          0          1
+{txt}{space 6}kspr1c {c |}{res}      6,811    .0055792    .0744909          0          1
+{txt}{space 6}loop1c {c |}{res}      6,811    .0196741    .1388878          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 6}mlpd1c {c |}{res}      6,811           0           0          0          0
+{txt}{space 6}niac1c {c |}{res}      6,811    .0042578    .0651177          0          1
+{txt}{space 5}nifir1c {c |}{res}      6,811     .001615     .040158          0          1
+{txt}{space 5}nifsr1c {c |}{res}      6,811    .0195272     .138379          0          1
+{txt}{space 5}nsaid1c {c |}{res}      6,811    .1745705    .3796272          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 6}ntca1c {c |}{res}      6,811    .0626927    .2424272          0          1
+{txt}{space 7}ntg1c {c |}{res}      6,811     .001615     .040158          0          1
+{txt}{space 6}oaia1c {c |}{res}      6,811    .0076347     .087049          0          1
+{txt}{space 6}ohga1c {c |}{res}      6,811    .0863309    .2808727          0          1
+{txt}{space 5}ostrd1c {c |}{res}      6,811    .0154162    .1232104          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}otch2b1c {c |}{res}      6,811    .0126266    .1116648          0          1
+{txt}{space 6}pdei1c {c |}{res}      6,811    .0069006    .0827888          0          1
+{txt}{space 7}ppi1c {c |}{res}      6,811    .0619586     .241098          0          1
+{txt}{space 4}prgstn1c {c |}{res}      6,811    .0610777    .2394903          0          1
+{txt}{space 4}prknsn1c {c |}{res}      6,811     .002496    .0499009          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}prmrn1c {c |}{res}      6,811      .10762    .3099227          0          1
+{txt}{space 6}prob1c {c |}{res}      6,811           0           0          0          0
+{txt}{space 6}slf11c {c |}{res}      6,811    .0014682    .0382919          0          1
+{txt}{space 6}slf21c {c |}{res}      6,811    .0554985    .2289674          0          1
+{txt}{space 6}sttn1c {c |}{res}      6,811    .1481427    .3552675          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}sympth1c {c |}{res}      6,811    .0339157    .1810256          0          1
+{txt}{space 6}thry1c {c |}{res}      6,811    .0647482    .2460991          0          1
+{txt}{space 6}thzd1c {c |}{res}      6,811    .0151226    .1220495          0          1
+{txt}{space 4}uazqtd1c {c |}{res}      6,808    .0076381    .0870681          0          1
+{txt}{space 4}uazqtp1c {c |}{res}      6,808     .023208    .1505746          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}urcos1c {c |}{res}      6,811    .0007341    .0270864          0          1
+{txt}{space 5}verir1c {c |}{res}      6,811    .0022023    .0468806          0          1
+{txt}{space 5}versr1c {c |}{res}      6,811    .0186463    .1352823          0          1
+{txt}{space 6}warf1c {c |}{res}      6,811    .0035237    .0592605          0          1
+{txt}{space 6}wtls1c {c |}{res}      6,811    .0019087    .0436499          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 7}xoi1c {c |}{res}      6,811    .0113052    .1057311          0          1
+{txt}{space 6}diur1c {c |}{res}      6,811    .1346351    .3413585          0          1
+{txt}{space 5}lipid1c {c |}{res}      6,811    .1615035    .3680217          0          1
+{txt}{space 5}anara1c {c |}{res}      6,811    .0052856    .0725148          0          1
+{txt}{space 6}tcaa1c {c |}{res}      6,811    .0130671    .1135704          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}anydep1c {c |}{res}      6,811    .0734107    .2608285          0          1
+{txt}{space 4}vasoda1c {c |}{res}      6,811    .0466892    .2109878          0          1
+{txt}{space 5}olvedm1 {c |}{res}      5,004    145.2841     39.5037      48.45     405.16
+{txt}{space 5}olvedv1 {c |}{res}      5,004    126.3743    31.52194      44.67     290.04
+{txt}{space 5}olvesv1 {c |}{res}      5,004    40.00067    17.10078       8.35     207.17
+{txt}{hline 13}{c +}{hline 57}
+{space 6}olvef1 {c |}{res}      5,004    69.02301    7.407558      18.94      88.57
+{txt}{space 6}olvsv1 {c |}{res}      5,004    86.37365    19.83231       15.2     182.73
+{txt}{space 5}oardis1 {c |}{res}      3,677    1.864728    1.306667       .142     24.425
+{txt}{space 5}oaormn1 {c |}{res}      3,742    781.9249    194.6905          0   1912.965
+{txt}{space 5}oaormx1 {c |}{res}      3,741    852.6781    200.0929          0    1975.59
+{txt}{hline 13}{c +}{hline 57}
+{space 7}aad1c {c |}{res}      3,573    32.02668    3.791831   16.36666   49.75312
+{txt}{space 4}crdout1c {c |}{res}      4,985    5.695145    1.476111     1.0792   14.56623
+{txt}{space 5}presys1 {c |}{res}      5,055     134.473    21.22593         41        223
+{txt}{space 5}predia1 {c |}{res}      5,054    77.39296    11.81775         15        166
+{txt}{space 4}postsys1 {c |}{res}      4,940    134.2982    21.19799         47        244
+{txt}{hline 13}{c +}{hline 57}
+{space 4}postdia1 {c |}{res}      4,940    77.73644    18.44029         23        889
+{txt}{space 5}nhdadm1 {c |}{res}      6,751    1.284402    .4511627          1          2
+{txt}{space 4}nviolen1 {c |}{res}      6,778    3.569194    .7076854          1          4
+{txt}{space 5}nsdwlk1 {c |}{res}      6,778     3.67306    .6725614          1          4
+{txt}{space 5}ntrash1 {c |}{res}      6,779    3.505827    .7717076          1          4
+{txt}{hline 13}{c +}{hline 57}
+{space 4}nlparks1 {c |}{res}      6,771    3.651159    .7000779          1          4
+{txt}{space 4}nlfshop1 {c |}{res}      6,789    3.733834     .600044          1          4
+{txt}{space 6}ntraf1 {c |}{res}      6,782    3.136243    .9232541          1          4
+{txt}{space 5}nnoise1 {c |}{res}      6,787    3.312509    .8177741          1          4
+{txt}{space 6}nsafe1 {c |}{res}      6,770    2.607238    1.043778          1          5
+{txt}{hline 13}{c +}{hline 57}
+{space 4}nvalues1 {c |}{res}      6,778     3.10121    .9337325          1          5
+{txt}{space 5}ntrust1 {c |}{res}      6,779    2.385898    .7866633          1          5
+{txt}{space 4}ndgalng1 {c |}{res}      6,787    3.715043    .8314208          1          5
+{txt}{space 6}nhelp1 {c |}{res}      6,784    2.227152    .7674414          1          5
+{txt}{space 5}nclose1 {c |}{res}      6,787    2.673788    .9622836          1          5
+{txt}{hline 13}{c +}{hline 57}
+{space 4}nhdblks1 {c |}{res}      6,588    9.972981    12.06824          0        210
+{txt}{space 4}ncohes1c {c |}{res}      6,765    17.53067    2.895093          5         25
+{txt}{space 5}nprob1c {c |}{res}      6,729    10.41106    3.372993          7         28
+{txt}{space 4}nhdtim1c {c |}{res}      6,769    18.79361     14.3116   .0833333         81
+{txt}{space 5}pkyrs1c {c |}{res}      6,720    11.39778    22.25225          0        640
+{txt}{hline 13}{c +}{hline 57}
+{space 7}cig1c {c |}{res}      6,792    .6273557     .703593          0          2
+{txt}{space 8}bth1 {c |}{res}      6,792    1.606154    .9060947          1          3
+{txt}{space 4}ctrybth1 {c |}{res}          0
+{txt}{space 6}yrsus1 {c |}{res}      2,014    28.20109    16.93824          0         82
+{txt}{space 7}mbth1 {c |}{res}      6,776    1.766381    .9571777          1          3
+{txt}{hline 13}{c +}{hline 57}
+{space 7}fbth1 {c |}{res}      6,761    1.799882    .9649355          1          3
+{txt}{space 6}mmbth1 {c |}{res}      6,694    1.990887    .9850552          1          3
+{txt}{space 6}mfbth1 {c |}{res}      6,610     2.02118    .9847556          1          3
+{txt}{space 6}pmbth1 {c |}{res}      6,631    2.016136    .9847459          1          3
+{txt}{space 6}pfbth1 {c |}{res}      6,567    2.050404    .9843673          1          3
+{txt}{hline 13}{c +}{hline 57}
+{space 5}langhm1 {c |}{res}      2,328    1.455756    .9673312          1          5
+{txt}{space 5}lngeng1 {c |}{res}      4,463    .7754873    .4173077          0          1
+{txt}{space 6}lngsp1 {c |}{res}      4,463    .1662559    .3723519          0          1
+{txt}{space 5}lngcan1 {c |}{res}      4,463    .0539996    .2260421          0          1
+{txt}{space 5}lngman1 {c |}{res}      4,463    .0652028     .246911          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}lngoth1 {c |}{res}      4,463    .0331616    .1790783          0          1
+{txt}{space 4}marital1 {c |}{res}      6,792    1.879417    1.317521          1          6
+{txt}{space 7}educ1 {c |}{res}      6,791    4.745546    2.382506          0          8
+{txt}{space 5}curjob1 {c |}{res}      6,790    4.580265    3.233072          1         10
+{txt}{space 4}homemkr1 {c |}{res}      1,267    .7174428    .4504207          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}income1 {c |}{res}      6,541    8.482801    3.531451          1         13
+{txt}{space 5}nhhldc1 {c |}{res}      6,595    .3109932    .7451341          0          4
+{txt}{space 4}numhhld1 {c |}{res}      6,756    2.186945    1.252378          0          8
+{txt}{space 5}nhhlde1 {c |}{res}      6,638    .6450738    .7747517          0          3
+{txt}{space 4}hometyp1 {c |}{res}      6,781    2.071228    .8505244          1          4
+{txt}{hline 13}{c +}{hline 57}
+{space 4}medcare1 {c |}{res}      6,762    1.112393    .4259344          1          3
+{txt}{space 6}hiprv1 {c |}{res}      6,792    .6933157    .4611511          0          1
+{txt}{space 5}himdcr1 {c |}{res}      6,792    .3588045     .479685          0          1
+{txt}{space 5}himdcd1 {c |}{res}      6,792     .069788    .2548081          0          1
+{txt}{space 6}himil1 {c |}{res}      6,792    .0360718    .1864827          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}hinone1 {c |}{res}      6,792    .0896643    .2857213          0          1
+{txt}{space 6}hioth1 {c |}{res}      6,792     .065371    .2471976          0          1
+{txt}{space 6}evsmk1 {c |}{res}      6,792     .495583    .5000173          0          1
+{txt}{space 5}agesmk1 {c |}{res}      3,371    18.18659    5.442051          0         60
+{txt}{space 5}cursmk1 {c |}{res}      6,814    .1303199    .3366798          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}agequit1 {c |}{res}      2,457    41.09687    13.64992          0         99
+{txt}{space 4}cigsday1 {c |}{res}      3,346    16.16617    17.21469          0        444
+{txt}{space 5}othtob1 {c |}{res}      6,789    .1577552    .3645382          0          1
+{txt}{space 6}cigar1 {c |}{res}      6,781    .0960035    .2946178          0          1
+{txt}{space 5}cgrage1 {c |}{res}        646    26.89164    10.50717          0         71
+{txt}{hline 13}{c +}{hline 57}
+{space 5}cgrcur1 {c |}{res}      6,780    .0196165    .1386887          0          1
+{txt}{space 4}cgrageq1 {c |}{res}        476    41.05882    14.06873          0         94
+{txt}{space 5}cgrday1 {c |}{res}        630    1.509524     2.42058          0         20
+{txt}{space 7}pipe1 {c |}{res}      6,788    .0839717    .2773658          0          1
+{txt}{space 5}pipage1 {c |}{res}        572     24.6521     8.74305          0         70
+{txt}{hline 13}{c +}{hline 57}
+{space 5}pipcur1 {c |}{res}      6,788    .0067767    .0820471          0          1
+{txt}{space 4}pipageq1 {c |}{res}        512    36.93555     13.0903          0         99
+{txt}{space 5}pipday1 {c |}{res}        556    2.938849    2.894518          0         23
+{txt}{space 7}chew1 {c |}{res}      6,785    .0156227    .1240197          0          1
+{txt}{space 5}chwage1 {c |}{res}        106    23.34906    12.63408          5         61
+{txt}{hline 13}{c +}{hline 57}
+{space 5}chwcur1 {c |}{res}      6,785    .0035372    .0593736          0          1
+{txt}{space 4}chwageq1 {c |}{res}         89    32.85393    14.57235          0         65
+{txt}{space 5}chwday1 {c |}{res}        112    2.669643    2.739068          0         20
+{txt}{space 6}snuff1 {c |}{res}      6,786    .0078102     .088036          0          1
+{txt}{space 5}snfage1 {c |}{res}         56    22.07143    14.13166          0         62
+{txt}{hline 13}{c +}{hline 57}
+{space 5}snfcur1 {c |}{res}      6,786    .0026525    .0514381          0          1
+{txt}{space 4}snfageq1 {c |}{res}         40        31.2    15.65362          5         65
+{txt}{space 5}snfday1 {c |}{res}         62    3.467742    3.629197          0         20
+{txt}{space 4}shndsmk1 {c |}{res}      5,938    4.189626    13.46974          0        202
+{txt}{space 4}alcohol1 {c |}{res}      6,791    .7953173    .4034993          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}alcage1 {c |}{res}      5,378    20.10506     5.85701          6         60
+{txt}{space 5}curalc1 {c |}{res}      5,475    .6847489    .4646583          0          1
+{txt}{space 7}wine1 {c |}{res}      6,755    .1757217    .3806114          0          1
+{txt}{space 7}beer1 {c |}{res}      6,761    .1859192    .3890703          0          1
+{txt}{space 4}hardliq1 {c |}{res}      6,757    .1897292    .3921158          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}othalc1 {c |}{res}      6,772     .010632    .1025696          0          1
+{txt}{space 4}yrsalc1c {c |}{res}      5,332    31.73387    15.97961          0         68
+{txt}{space 5}alcwk1c {c |}{res}      5,353    5.070241     9.29173          0         99
+{txt}{space 4}alc24hr1 {c |}{res}      4,214    .3621262    .8969441          0          7
+{txt}{space 4}highalc1 {c |}{res}      4,206    2.385164    2.474605          0         20
+{txt}{hline 13}{c +}{hline 57}
+{space 7}cgr1c {c |}{res}      6,778    .1131602    .3728672          0          2
+{txt}{space 4}cgryrs1c {c |}{res}      6,729    2.547332    22.06591          0        570
+{txt}{space 7}pip1c {c |}{res}      6,787    .0898777    .3069042          0          2
+{txt}{space 4}pipyrs1c {c |}{res}      6,745    3.871609    26.88533          0        648
+{txt}{space 6}chew1c {c |}{res}      6,785    .0182756    .1553554          0          2
+{txt}{hline 13}{c +}{hline 57}
+{space 4}chwyrs1c {c |}{res}      6,784    .8020342    11.56453          0        530
+{txt}{space 7}snf1c {c |}{res}      6,786    .0097259    .1185506          0          2
+{txt}{space 4}snfyrs1c {c |}{res}      6,786    .4998526    8.487474          0        275
+{txt}{space 7}alc1c {c |}{res}      6,763     1.34881    .7989343          0          2
+{txt}{space 4}mrgbth1c {c |}{res}      4,013    2.754049    .7039708          1          4
+{txt}{hline 13}{c +}{hline 57}
+{space 4}frgbth1c {c |}{res}      3,871     2.76776    .6869429          1          4
+{txt}{space 4}rgnbth1c {c |}{res}      4,637    2.682985    .7979681          1          4
+{txt}{space 6}sbpcp1 {c |}{res}      6,336    134.2145    18.97038         86        233
+{txt}{space 6}dbpcp1 {c |}{res}      6,336    75.22696    10.06051         29        121
+{txt}{space 5}mnapcp1 {c |}{res}      6,336    99.42898    14.01427         53        173
+{txt}{hline 13}{c +}{hline 57}
+{space 4}pprescp1 {c |}{res}      6,336    58.98753     14.3159         22        136
+{txt}{space 4}pulsecp1 {c |}{res}      6,336    64.20928    10.14844         33        107
+{txt}{space 6}sbpwp1 {c |}{res}      6,336    132.0483    19.43966         67        251
+{txt}{space 6}dbpwp1 {c |}{res}      6,336    73.20912       10.96         27        126
+{txt}{space 5}mnapwp1 {c |}{res}      6,336    95.89568    13.55063         40        173
+{txt}{hline 13}{c +}{hline 57}
+{space 4}pulsewp1 {c |}{res}      6,336    63.75142    10.23587         33        106
+{txt}{space 7}lae1c {c |}{res}      6,336    13.34773     5.61119   3.008604   55.75431
+{txt}{space 7}sae1c {c |}{res}      6,336    4.482447    2.818442   .5932924    22.3045
+{txt}{space 7}svr1c {c |}{res}      6,336    1648.621    400.3724   565.1097   6054.814
+{txt}{space 5}totvip1 {c |}{res}      6,336    173.1199    70.79308         43        709
+{txt}{hline 13}{c +}{hline 57}
+{space 7}eco1c {c |}{res}      6,336    4.833878    .8103813   1.312118   8.337852
+{txt}{space 5}cardx1c {c |}{res}      6,336    2.591133    .2973159   .9219295   3.987096
+{txt}{space 4}cejectp1 {c |}{res}      6,336    319.2948     30.9329        187        753
+{txt}{space 4}stkvol1c {c |}{res}      6,336    76.73622    16.80881    14.1305   207.5819
+{txt}{space 5}stkvx1c {c |}{res}      6,336    41.11268    7.483278   9.928472   103.2925
+{txt}{hline 13}{c +}{hline 57}
+{space 6}armcm1 {c |}{res}      6,814    31.60475    4.328196       13.6       51.3
+{txt}{space 5}cuffsz1 {c |}{res}      6,804    2.351999     .689473          1          6
+{txt}{space 7}s1bp1 {c |}{res}      6,813    128.0159    21.68826         71        227
+{txt}{space 7}d1bp1 {c |}{res}      6,813    72.72552    10.85796         35        123
+{txt}{space 7}bptm1 {c |}{res}          0
+{txt}{hline 13}{c +}{hline 57}
+{space 7}s2bp1 {c |}{res}      6,811    127.0046    21.90634         72        233
+{txt}{space 7}d2bp1 {c |}{res}      6,811    72.11291    10.46843         39        119
+{txt}{space 7}s3bp1 {c |}{res}      6,811    126.1806    21.61176         62        234
+{txt}{space 7}d3bp1 {c |}{res}      6,811    71.71546    10.42626         35        118
+{txt}{space 4}rmtempf1 {c |}{res}      6,811    73.18602    2.385692         61         82
+{txt}{hline 13}{c +}{hline 57}
+{space 7}sbp1c {c |}{res}      6,811    126.5926    21.47954         67      230.5
+{txt}{space 7}dbp1c {c |}{res}      6,811    71.91418    10.25624         37      118.5
+{txt}{space 7}spp1c {c |}{res}      6,811    54.67839    17.26733       14.5        149
+{txt}{space 5}dcoeff1 {c |}{res}      6,531    .0025114    .0011066   .0002954        .02
+{txt}{space 5}youngm1 {c |}{res}      6,528    1300.498    645.8291      74.97   13823.64
+{txt}{hline 13}{c +}{hline 57}
+{space 6}rsurf1 {c |}{res}      6,740    4.280119    2.706418          0          8
+{txt}{space 5}rmorph1 {c |}{res}      6,740    .6756677    1.249128          0          8
+{txt}{space 6}rsten1 {c |}{res}      6,740    4.597329    2.205806          1          8
+{txt}{space 7}rloc1 {c |}{res}      6,740    .6410979    1.152223          0          8
+{txt}{space 6}rdens1 {c |}{res}      6,740    .7488131    1.396779          0          8
+{txt}{hline 13}{c +}{hline 57}
+{space 6}lsurf1 {c |}{res}      6,740    4.275074    2.718041          0          8
+{txt}{space 5}lmorph1 {c |}{res}      6,740    .6933234    1.280343          0          8
+{txt}{space 6}lsten1 {c |}{res}      6,740    4.590059    2.221131          1          8
+{txt}{space 7}lloc1 {c |}{res}      6,740    .6591988    1.176145          0          8
+{txt}{space 6}ldens1 {c |}{res}      6,740    .7562315     1.42563          0          8
+{txt}{hline 13}{c +}{hline 57}
+{space 4}maxcom1c {c |}{res}      6,726      .87022    .1943454         .4     2.4525
+{txt}{space 4}maxint1c {c |}{res}      6,629    1.073147    .6037518        .37   5.658333
+{txt}{space 4}maxstn1c {c |}{res}      6,716     .557028    .7499971          0          5
+{txt}{space 4}maxsur1c {c |}{res}      6,715    3.601489    2.859525          0          6
+{txt}{space 4}maxmor1c {c |}{res}      6,718    .7764216    .9449792          0          2
+{txt}{hline 13}{c +}{hline 57}
+{space 4}maxden1c {c |}{res}      6,717    .8887896    1.202162          0          4
+{txt}{space 4}zmximt1c {c |}{res}      6,737    -.000013    .9999994    -1.8618     7.8385
+{txt}{space 4}ualbumn1 {c |}{res}      6,775    2.807985    18.34792         .1        854
+{txt}{space 4}ualbcre1 {c |}{res}      6,775    26.97234    170.4424         .4       6250
+{txt}{space 5}ucreat1 {c |}{res}      6,775     117.543    72.03988        7.2      615.2
+{txt}{hline 13}{c +}{hline 57}
+{space 4}uabcat1c {c |}{res}      6,775    1.109963    .3557029          1          3
+{txt}{space 4}diabins1 {c |}{res}      6,806     .161916     .788936          0          9
+{txt}{space 4}lastdrk1 {c |}{res}      6,811    14.03905    1.620609          3         30
+{txt}{space 5}ctsmod1 {c |}{res}      6,814    6.050631    3.567872          3         11
+{txt}{space 4}pactadm1 {c |}{res}      6,795    1.265636    .8445156         -9          2
+{txt}{hline 13}{c +}{hline 57}
+{space 4}q01hlcn1 {c |}{res}      6,795    700.7903    621.5894          0       2835
+{txt}{space 4}q01hlcm1 {c |}{res}      6,795    1751.976    1553.974          0     7087.5
+{txt}{space 4}q02hmcn1 {c |}{res}      6,795    199.4474    313.6684          0       2835
+{txt}{space 4}q02hmcm1 {c |}{res}      6,795    797.7896    1254.674          0      11340
+{txt}{space 5}hsemn1c {c |}{res}      6,795    900.2377    785.5879          0       5670
+{txt}{hline 13}{c +}{hline 57}
+{space 5}hsemt1c {c |}{res}      6,795    2549.765    2304.975          0    18427.5
+{txt}{space 4}q03ymcn1 {c |}{res}      6,795     97.0986    208.8212          0       2835
+{txt}{space 4}q03ymcm1 {c |}{res}      6,795    388.3944    835.2847          0      11340
+{txt}{space 4}q04yvcn1 {c |}{res}      6,795    30.45107    137.5789          0       2520
+{txt}{space 4}q04yvcm1 {c |}{res}      6,795    197.9319    894.2628          0      16380
+{txt}{hline 13}{c +}{hline 57}
+{space 5}yrdmn1c {c |}{res}      6,795    127.5497    288.8163          0       5040
+{txt}{space 5}yrdmt1c {c |}{res}      6,795    586.3263    1428.392          0      26460
+{txt}{space 4}q05olcn1 {c |}{res}      6,795    150.8675    428.1847          0       2835
+{txt}{space 4}q05olcm1 {c |}{res}      6,795    377.1689    1070.462          0     7087.5
+{txt}{space 4}q06omcn1 {c |}{res}      6,795    65.91759    264.5437          0       2835
+{txt}{hline 13}{c +}{hline 57}
+{space 4}q06omcm1 {c |}{res}      6,795    263.6703    1058.175          0      11340
+{txt}{space 4}caremn1c {c |}{res}      6,795    216.7851    562.5292          0       5145
+{txt}{space 4}caremt1c {c |}{res}      6,795    640.8392    1701.987          0    16957.5
+{txt}{space 4}q07tlcn1 {c |}{res}      6,795    565.8293    551.1784          0       2835
+{txt}{space 4}q07tlcm1 {c |}{res}      6,795    848.7439    826.7676          0     4252.5
+{txt}{hline 13}{c +}{hline 57}
+{space 5}trnmn1c {c |}{res}      6,795    565.8293    551.1784          0       2835
+{txt}{space 5}trnmt1c {c |}{res}      6,795    848.7439    826.7676          0     4252.5
+{txt}{space 4}q08wmcn1 {c |}{res}      6,795    297.6645     419.028          0       2835
+{txt}{space 4}q08wmcm1 {c |}{res}      6,795    892.9934    1257.084          0       8505
+{txt}{space 4}q09wmcn1 {c |}{res}      6,795    203.9235    342.8089          0       2835
+{txt}{hline 13}{c +}{hline 57}
+{space 4}q09wmcm1 {c |}{res}      6,795    713.7322    1199.831          0     9922.5
+{txt}{space 4}walkmn1c {c |}{res}      6,795    501.5879    627.1604          0       5670
+{txt}{space 4}walkmt1c {c |}{res}      6,795    1606.726    2017.981          0    18427.5
+{txt}{space 4}q10smcn1 {c |}{res}      6,795    29.63355    117.7686          0       2835
+{txt}{space 4}q10smcm1 {c |}{res}      6,795    148.1678    588.8431          0      14175
+{txt}{hline 13}{c +}{hline 57}
+{space 4}q11svcn1 {c |}{res}      6,795    5.131714    46.64953          0       1200
+{txt}{space 4}q11svcm1 {c |}{res}      6,795      35.922    326.5467          0       8400
+{txt}{space 4}q12svcn1 {c |}{res}      6,795    5.206034    52.97384          0       2520
+{txt}{space 4}q12svcm1 {c |}{res}      6,795    36.44224    370.8169          0      17640
+{txt}{space 4}q13smcn1 {c |}{res}      6,795    40.56439    142.2216          0       2520
+{txt}{hline 13}{c +}{hline 57}
+{space 4}q13smcm1 {c |}{res}      6,795    141.9753    497.7758          0       8820
+{txt}{space 4}sptnmn1c {c |}{res}      6,795    80.53569    211.0462          0       3420
+{txt}{space 4}sptnmt1c {c |}{res}      6,795    362.5074    983.9718          0      18240
+{txt}{space 4}q14cmcn1 {c |}{res}      6,795     56.5401    144.4109          0       2835
+{txt}{space 4}q14cmcm1 {c |}{res}      6,795    310.9706    794.2599          0    15592.5
+{txt}{hline 13}{c +}{hline 57}
+{space 4}q15cvcn1 {c |}{res}      6,795    23.65121     110.048          0       2340
+{txt}{space 4}q15cvcm1 {c |}{res}      6,795    165.5585    770.3358          0      16380
+{txt}{space 4}condmn1c {c |}{res}      6,795    80.19132    204.5417          0       4455
+{txt}{space 4}condmt1c {c |}{res}      6,795    476.5291    1251.339          0      27540
+{txt}{space 4}q16ilcn1 {c |}{res}      6,795    886.0375    640.1825          0       2835
+{txt}{hline 13}{c +}{hline 57}
+{space 4}q16ilcm1 {c |}{res}      6,795    886.0375    640.1825          0       2835
+{txt}{space 4}q17ilcn1 {c |}{res}      6,795    547.1347    561.6789          0       2835
+{txt}{space 4}q17ilcm1 {c |}{res}      6,795     820.702    842.5184          0     4252.5
+{txt}{space 4}leismn1c {c |}{res}      6,795    1433.172    923.7302          0       5670
+{txt}{space 4}leismt1c {c |}{res}      6,795     1706.74    1145.256          0     7087.5
+{txt}{hline 13}{c +}{hline 57}
+{space 5}q18jyn1 {c |}{res}      6,795     .544518    .4980509          0          1
+{txt}{space 4}q19wrdw1 {c |}{res}      6,793   -1.319594    6.957015         -9          7
+{txt}{space 4}q19wrhd1 {c |}{res}      6,793    .2146327    8.465904         -9         16
+{txt}{space 5}q19wcn1 {c |}{res}      6,795    1268.062    1354.184          0       6720
+{txt}{space 4}q20jlcn1 {c |}{res}      6,795     567.117    898.4898          0       5760
+{txt}{hline 13}{c +}{hline 57}
+{space 4}q20jlcm1 {c |}{res}      6,795    850.6755    1347.735          0       8640
+{txt}{space 4}q21jlcn1 {c |}{res}      6,795    295.2848    577.8991          0       6300
+{txt}{space 4}q21jlcm1 {c |}{res}      6,795    738.2119    1444.748          0      15750
+{txt}{space 4}q22jmcn1 {c |}{res}      6,795    337.4393    699.8145          0       6720
+{txt}{space 4}q22jmcm1 {c |}{res}      6,795    1012.318    2099.443          0      20160
+{txt}{hline 13}{c +}{hline 57}
+{space 4}q23jvcn1 {c |}{res}      6,795    59.43488    305.9381          0       4500
+{txt}{space 4}q23jvcm1 {c |}{res}      6,795    416.0442    2141.566          0      31500
+{txt}{space 5}occmn1c {c |}{res}      6,795    1259.276    1421.707          0      13860
+{txt}{space 5}occmt1c {c |}{res}      6,795    3017.249    3928.475          0      47400
+{txt}{space 5}q24uyn1 {c |}{res}      6,795     .267844    .4428684          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}q25ulcn1 {c |}{res}      6,795    63.36424    194.5076          0       2520
+{txt}{space 4}q25ulcm1 {c |}{res}      6,795    95.04636    291.7613          0       3780
+{txt}{space 4}q26umcn1 {c |}{res}      6,795    48.63576    182.8668          0       2520
+{txt}{space 4}q26umcm1 {c |}{res}      6,795    145.9073    548.6005          0       7560
+{txt}{space 4}q27uvcn1 {c |}{res}      6,795    12.46799    99.91085          0       2520
+{txt}{hline 13}{c +}{hline 57}
+{space 4}q27uvcm1 {c |}{res}      6,795    81.04194    649.4205          0      16380
+{txt}{space 5}volmn1c {c |}{res}      6,795     124.468    363.1262          0       5880
+{txt}{space 5}volmt1c {c |}{res}      6,795    321.9956    1125.368          0      24120
+{txt}{space 4}wlkpace1 {c |}{res}      6,789    1.919723     .826353          0          4
+{txt}{space 4}pahrdy1c {c |}{res}      6,795    12.59648    5.869334          0       82.1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}wkhrwk1c {c |}{res}      6,795    20.98793    23.69512          0        231
+{txt}{space 4}exercm1c {c |}{res}      6,795    1552.769    2340.329          0      37260
+{txt}{space 6}_merge {c |}{res}      6,814           3           0          3          3
+{txt}
+{com}. 
+. 
+. **** data cleaning
+. gen female = 0
+{txt}
+{com}.         replace female =1 if gender ==0
+{txt}(3,601 real changes made)
+
+{com}. gen male =0     
+{txt}
+{com}.         replace male =1 if gender ==1
+{txt}(3,213 real changes made)
+
+{com}.         
+. * Coding this as black vs. non-black, but actually the PCE score is for white and black 
+. * race1c  1 is white; 2 is asian; 3 is aa; 4 is hispanic; 
+. gen black = 0
+{txt}
+{com}.         replace black =1 if race1c ==3
+{txt}(1,892 real changes made)
+
+{com}. gen famhx = 0
+{txt}
+{com}.         replace famhx = 1 if pmi1 ==1 | shrtatt1 == 1 | chrtatt1 == 1
+{txt}(2,734 real changes made)
+
+{com}. 
+. * age variables
+.         gen age = age1c
+{txt}
+{com}.         gen decade = floor(age1c/10)    
+{txt}
+{com}.         gen lnage = ln(age)
+{txt}
+{com}.         gen lnage2 = ln(age)^2
+{txt}
+{com}. 
+. * BP Variables
+.         gen anyhtnmeds = 0
+{txt}
+{com}.                 replace anyhtnmeds =1 if htnmed1c ==1
+{txt}(2,536 real changes made)
+
+{com}.         gen lntrtsbp = 0
+{txt}
+{com}.                 quietly replace lntrtsbp = ln(sbp1c) if(anyhtnmeds==1)
+{txt}
+{com}.         gen lnuntrtsbp = 0
+{txt}
+{com}.                 quietly replace lnuntrtsbp = ln(sbp1c) if(anyhtnmeds==0)
+{txt}
+{com}. 
+. gen crtsmoker = 0
+{txt}
+{com}.         replace crtsmoker =1 if cgrcur1 ==1 | pipcur1 ==1 | cursmk1==1
+{txt}(1,017 real changes made)
+
+{com}. gen lnchol = ln(chol1)
+{txt}(23 missing values generated)
+
+{com}. gen lnhdl = ln(hdl1)
+{txt}(26 missing values generated)
+
+{com}. 
+. * Data terms 
+.  gen lnage_lnchol     = lnage * lnchol
+{txt}(23 missing values generated)
+
+{com}.  gen lnage_lnhdl      = lnage * lnhdl
+{txt}(26 missing values generated)
+
+{com}.  gen lnage_lnuntrtsbp = lnage * lnuntrtsbp
+{txt}(1 missing value generated)
+
+{com}.  gen lnage_lntrtsbp   = lnage * lntrtsbp
+{txt}(2 missing values generated)
+
+{com}.  gen lnage_crtsmoker  = lnage * crtsmoker
+{txt}
+{com}. 
+.  gen dm =0
+{txt}
+{com}.         replace dm=1 if dm031c ==2 | dm031c ==3 | diabet ==1
+{txt}(926 real changes made)
+
+{com}.         sum dm
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}dm {c |}{res}      6,814    .1358967     .342704          0          1
+{txt}
+{com}.  
+.  gen ascvd_10y = .
+{txt}(6,814 missing values generated)
+
+{com}.  
+. ********************************************
+. *** CREATING THE POOLED COHORT EQUATIONS ***
+. ********************************************
+. 
+. *************************
+. *** White Women score ***
+. *************************
+. quietly gen ascvd_wh_fe = -29.799 * lnage + 4.884 * lnage2 + 13.54 * lnchol + -3.114 * lnage_lnchol + -13.578 * lnhdl + 3.149 * lnage_lnhdl + 2.019 * lntrtsbp + 0 * lnage_lntrtsbp + 1.957 * lnuntrtsbp + 0 * lnage_lnuntrtsbp + 7.574 * crtsmoker + -1.665 * lnage_crtsmoker + 0.661 * dm 
+{txt}
+{com}. quietly gen mean_ascvd_wh_fe = -29.18 // value from paper
+{txt}
+{com}. 
+. * quietly replace ascvd_10y = 1-0.9665^exp(ascvd_wh_fe - mean_ascvd_wh_fe) if white==1 & female==1
+. quietly replace ascvd_10y = 1-0.9665^exp(ascvd_wh_fe - mean_ascvd_wh_fe) if black==0 & female==1
+{txt}
+{com}. quietly drop ascvd_wh_fe mean_ascvd_wh_fe
+{txt}
+{com}. 
+. *************************
+. *** black Women score ***
+. *************************
+. quietly gen ascvd_bl_fe = 17.114 * lnage + 0 * lnage2 + 0.940 * lnchol + 0 * lnage_lnchol + -18.920 * lnhdl + 4.475 * lnage_lnhdl + 29.291 * lntrtsbp + -6.432 * lnage_lntrtsbp + 27.820 * lnuntrtsbp + -6.087 * lnage_lnuntrtsbp + 0.691 * crtsmoker + 0 * lnage_crtsmoker + 0.874 * dm 
+{txt}
+{com}. quietly gen mean_ascvd_bl_fe = 86.61 // value from paper
+{txt}
+{com}. 
+. quietly replace ascvd_10y = 1-0.9533^exp(ascvd_bl_fe - mean_ascvd_bl_fe) if black==1 & female==1
+{txt}
+{com}. quietly drop ascvd_bl_fe mean_ascvd_bl_fe
+{txt}
+{com}. 
+. *************************
+. *** white male score ****
+. *************************
+. quietly gen ascvd_wh_ma = 12.344 * lnage + 0 * lnage2 + 11.853 * lnchol + -2.664 * lnage_lnchol + -7.990 * lnhdl + 1.769 * lnage_lnhdl + 1.797 * lntrtsbp + 0 * lnage_lntrtsbp + 1.764 * lnuntrtsbp + 0 * lnage_lnuntrtsbp + 7.837 * crtsmoker + -1.795 * lnage_crtsmoker + 0.658 * dm
+{txt}
+{com}. quietly gen mean_ascvd_wh_ma = 61.18 // value from paper
+{txt}
+{com}. 
+. * quietly replace ascvd_10y = 1-0.9144^exp(ascvd_wh_ma - mean_ascvd_wh_ma) if white==1 & male==1
+. quietly replace ascvd_10y = 1-0.9144^exp(ascvd_wh_ma - mean_ascvd_wh_ma) if black==0 & male==1
+{txt}
+{com}. quietly drop ascvd_wh_ma mean_ascvd_wh_ma
+{txt}
+{com}. 
+. *************************
+. *** black male score ****
+. *************************
+. quietly gen ascvd_bl_ma = 2.469 * lnage + 0 * lnage2 + 0.302 * lnchol + 0 * lnage_lnchol + -0.307 * lnhdl + 0 * lnage_lnhdl + 1.916 * lntrtsbp + 0 * lnage_lntrtsbp + 1.809 * lnuntrtsbp + 0 * lnage_lnuntrtsbp + 0.549 * crtsmoker + 0 * lnage_crtsmoker + 0.645 * dm
+{txt}
+{com}. quietly gen mean_ascvd_bl_ma = 19.54 // value from paper
+{txt}
+{com}. 
+. quietly replace ascvd_10y = 1-0.8954^exp(ascvd_bl_ma - mean_ascvd_bl_ma) if black==1 & male==1
+{txt}
+{com}. quietly drop ascvd_bl_ma mean_ascvd_bl_ma
+{txt}
+{com}. 
+. replace ascvd_10y=. if(ascvd_10y == 999)
+{txt}(0 real changes made)
+
+{com}.         
+. sum ascv*
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 3}ascvd_10y {c |}{res}      6,786     .138572    .1340327   .0012879   .9027727
+{txt}
+{com}. 
+. gen ascvd520 = 0
+{txt}
+{com}.         replace ascvd520 =1 if ascvd_10y >0.0499999 & ascvd_10y<0.20000001
+{txt}(2,964 real changes made)
+
+{com}. 
+. gen ascvd7520 = 0
+{txt}
+{com}.         replace ascvd7520 =1 if ascvd_10y >0.075000 & ascvd_10y<0.20000001
+{txt}(2,204 real changes made)
+
+{com}.         
+.         
+. ************************************
+. ***  MESA CALCULATORS           ***
+. ************************************
+. gen agat1 = agatp21c+1
+{txt}(69 missing values generated)
+
+{com}. 
+. gen cac0 = 0
+{txt}
+{com}.         replace cac0 =1 if agatp21c==0
+{txt}(3,519 real changes made)
+
+{com}. 
+. 
+. gen Terms = .
+{txt}(6,814 missing values generated)
+
+{com}.         replace Terms = (age * 0.0455) + (male * 0.7496) + (dm * 0.5168) /*
+>                 */ + (crtsmoker * 0.4732) + (chol1 * 0.0053) - (hdl1 * 0.0140) + (lipid1c * 0.2473) + /*
+>                 */ (sbp1c * 0.0085) + (anyhtnmeds * 0.3381) + (famhx * 0.4522) if race1c ==1
+{txt}(2,610 real changes made)
+
+{com}. 
+.         replace Terms = (age * 0.0455) + (male * 0.7496) + (-0.2111) + (dm * 0.5168) /*
+>                 */ + (crtsmoker * 0.4732) + (chol1 * 0.0053) - (hdl1 * 0.0140) + (lipid1c * 0.2473) + /*
+>                 */ (sbp1c * 0.0085) + (anyhtnmeds * 0.3381) + (famhx * 0.4522) if race1c ==3
+{txt}(1,875 real changes made)
+
+{com}.                 
+.         replace Terms = (age * 0.0455) + (male * 0.7496) + (-0.5055) + (dm * 0.5168) /*
+>                 */ + (crtsmoker * 0.4732) + (chol1 * 0.0053) - (hdl1 * 0.0140) + (lipid1c * 0.2473) + /*
+>                 */ (sbp1c * 0.0085) + (anyhtnmeds * 0.3381) + (famhx * 0.4522) if race1c ==2
+{txt}(803 real changes made)
+
+{com}.                 
+.         replace Terms = (age * 0.0455) + (male * 0.7496) + (-0.19) + (dm * 0.5168) /*
+>                 */ + (crtsmoker * 0.4732) + (chol1 * 0.0053) - (hdl1 * 0.0140) + (lipid1c * 0.2473) + /*
+>                 */ (sbp1c * 0.0085) + (anyhtnmeds * 0.3381) + (famhx * 0.4522) if race1c ==4
+{txt}(1,495 real changes made)
+
+{com}.                 
+. gen mesaRisk = (1 - 0.99963^exp(Terms))
+{txt}(31 missing values generated)
+
+{com}. 
+. gen TermsCAC = .
+{txt}(6,814 missing values generated)
+
+{com}.         replace TermsCAC = (age * 0.0172) + (male * 0.4079) + (dm * 0.3892) /*
+>                 */ + (crtsmoker * 0.3717) + (chol1 * 0.0043) - (hdl1 * 0.0114) + (lipid1c * 0.1206) +  /*
+>                 */ (sbp1c * 0.0066) + (anyhtnmeds * 0.2278) + (famhx * 0.3239) + (ln(agat1) * 0.2743) if race1c ==1
+{txt}(2,578 real changes made)
+
+{com}.                 
+.         replace TermsCAC = (age * 0.0172) + (male * 0.4079) + (-0.3475) + (dm * 0.3892) /*
+>                 */ + (crtsmoker * 0.3717) + (chol1 * 0.0043) - (hdl1 * 0.0114) + (lipid1c * 0.1206) +  /*
+>                 */ (sbp1c * 0.0066) + (anyhtnmeds * 0.2278) + (famhx * 0.3239) + (ln(agat1) * 0.2743) if race1c ==2
+{txt}(793 real changes made)
+
+{com}.                 
+.         replace TermsCAC = (age * 0.0172) + (male * 0.4079) + (0.0353) + (dm * 0.3892) /*
+>                 */ + (crtsmoker * 0.3717) + (chol1 * 0.0043) - (hdl1 * 0.0114) + (lipid1c * 0.1206) +  /*
+>                 */ (sbp1c * 0.0066) + (anyhtnmeds * 0.2278) + (famhx * 0.3239) + (ln(agat1) * 0.2743)  if race1c ==3
+{txt}(1,863 real changes made)
+
+{com}.                 
+.         replace TermsCAC = (age * 0.0172) + (male * 0.4079) + (-0.0222) + (dm * 0.3892) /*
+>                 */ + (crtsmoker * 0.3717) + (chol1 * 0.0043) - (hdl1 * 0.0114) + (lipid1c * 0.1206) +  /*
+>                 */ (sbp1c * 0.0066) + (anyhtnmeds * 0.2278) + (famhx * 0.3239) + (ln(agat1) * 0.2743)  if race1c ==4
+{txt}(1,481 real changes made)
+
+{com}.                 
+. gen mesaCACRisk = (1 - 0.99833^exp(TermsCAC))   
+{txt}(99 missing values generated)
+
+{com}.         
+. sum mesa* asc*
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}mesaid {c |}{res}      6,814      3407.5    1967.177          1       6814
+{txt}{space 4}mesaRisk {c |}{res}      6,783    .0687064    .0623555   .0035169   .6975243
+{txt}{space 1}mesaCACRisk {c |}{res}      6,715    .0702824    .0804717   .0043875   .6702184
+{txt}{space 3}ascvd_10y {c |}{res}      6,786     .138572    .1340327   .0012879   .9027727
+{txt}{space 4}ascvd520 {c |}{res}      6,814    .4349868    .4957916          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 3}ascvd7520 {c |}{res}      6,814    .3234517    .4678278          0          1
+{txt}
+{com}. 
+. *********************************************
+. *** Applying the ACC/AHA CPGs eligibility ***
+. *********************************************
+. 
+. /*In adults 40 to 75 years of age without diabetes mellitus and with LDL-C levels ≥70 mg/dL- 189 mg/dL
+> (≥1.8-4.9 mmol/L), at a 10-year ASCVD risk of ≥7.5% to 19.9%, if a decision about statin therapy is
+> uncertain, consider measuring CAC. If CAC is zero, treatment with statin therapy may be withheld or
+> delayed, except in cigarette smokers, those with diabetes mellitus, and those with a strong family
+> history of premature ASCVD. A CAC score of 1 to 99 favors statin therapy, especially in those ≥55 years
+> of age. For any patient, if the CAC score is ≥100 Agatston units or ≥75th percentile, statin therapy is
+> indicated unless otherwise deferred by the outcome of clinician–patient risk discussion.*/
+. *7.5-20. except cig, dm, fh
+. 
+. gen age4575 = 0
+{txt}
+{com}.         replace age4575 =1 if age >44 & age <76
+{txt}(6,001 real changes made)
+
+{com}.         drop if age <45
+{txt}(7 observations deleted)
+
+{com}.         drop if age >75
+{txt}(806 observations deleted)
+
+{com}. 
+. qui gen ldl190 =0
+{txt}
+{com}.         qui replace ldl190=1 if ldl1 >190 & ldl1<500            
+{txt}
+{com}. qui gen elig = 1
+{txt}
+{com}.         
+.         count
+  {res}6,001
+{txt}
+{com}. drop if agatp21c ==.
+{txt}(64 observations deleted)
+
+{com}.         sum elig
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}elig {c |}{res}      5,937           1           0          1          1
+{txt}
+{com}.         sum ascvd7520
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 3}ascvd7520 {c |}{res}      5,937    .3466397    .4759399          0          1
+{txt}
+{com}. replace elig = 0        if ascvd7520==0   
+{txt}(3,879 real changes made)
+
+{com}.         sum elig
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}elig {c |}{res}      5,937    .3466397    .4759399          0          1
+{txt}
+{com}.         sum dm
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}dm {c |}{res}      5,937    .1317164    .3382106          0          1
+{txt}
+{com}. replace elig = 0        if dm==1
+{txt}(253 real changes made)
+
+{com}.         sum elig
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}elig {c |}{res}      5,937    .3040256    .4600323          0          1
+{txt}
+{com}.         sum cursmk1
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 5}cursmk1 {c |}{res}      5,937    .1414856    .3485511          0          1
+{txt}
+{com}. replace elig = 0        if cursmk1==1
+{txt}(300 real changes made)
+
+{com}.         sum elig
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}elig {c |}{res}      5,937     .253495    .4350485          0          1
+{txt}
+{com}.         sum lipid1c
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 5}lipid1c {c |}{res}      5,934    .1557128    .3626134          0          1
+{txt}
+{com}. replace elig = 0        if lipid1c ==1
+{txt}(293 real changes made)
+
+{com}.         sum elig
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}elig {c |}{res}      5,937    .2041435    .4031083          0          1
+{txt}
+{com}.         sum ldl190
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}ldl190 {c |}{res}      5,937    .0166751    .1280617          0          1
+{txt}
+{com}. replace elig = 0        if ldl190 ==1
+{txt}(27 real changes made)
+
+{com}.         sum elig
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}elig {c |}{res}      5,937    .1995958    .3997302          0          1
+{txt}
+{com}.         
+. *** Counting risk factors ***
+. * Only the ones that are in the sample
+. 
+. gen rfcount = 0
+{txt}
+{com}.         replace rfcount = rfcount+1 if female ==0
+{txt}(2,804 real changes made)
+
+{com}.         replace rfcount = rfcount+1 if race1c == 2
+{txt}(690 real changes made)
+
+{com}.         replace rfcount = rfcount+1 if sbpcp1>139
+{txt}(2,166 real changes made)
+
+{com}.         replace rfcount = rfcount+1 if chol1>160
+{txt}(4,976 real changes made)
+
+{com}.         replace rfcount = rfcount+1 if famhx>160
+{txt}(0 real changes made)
+
+{com}.         replace rfcount = rfcount+1 if hdl1<40
+{txt}(1,339 real changes made)
+
+{com}. 
+. foreach i in age female race1 sbpcp1 chol1 hdl1 dm {c -(}    
+{txt}  2{com}. bysort cac0: sum `i'
+{txt}  3{com}. {c )-}               
+
+{txt}{hline}
+-> cac0 = 0
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 9}age {c |}{res}      2,573     63.4656    7.860027         45         75
+
+{txt}{hline}
+-> cac0 = 1
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 9}age {c |}{res}      3,364    57.19263    8.277078         45         75
+
+
+{txt}{hline}
+-> cac0 = 0
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}female {c |}{res}      2,573    .3956471    .4890843          0          1
+
+{txt}{hline}
+-> cac0 = 1
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}female {c |}{res}      3,364    .6287158    .4832201          0          1
+
+
+{txt}{hline}
+-> cac0 = 0
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}race1c {c |}{res}      2,573    2.194326    1.196944          1          4
+
+{txt}{hline}
+-> cac0 = 1
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}race1c {c |}{res}      3,364    2.457491    1.183307          1          4
+
+
+{txt}{hline}
+-> cac0 = 0
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}sbpcp1 {c |}{res}      2,384    136.7328    18.71031         86        233
+
+{txt}{hline}
+-> cac0 = 1
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}sbpcp1 {c |}{res}      3,145    129.9135    17.87978         90        214
+
+
+{txt}{hline}
+-> cac0 = 0
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}chol1 {c |}{res}      2,566     195.309    37.02786         85        515
+
+{txt}{hline}
+-> cac0 = 1
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}chol1 {c |}{res}      3,352    194.0946    34.91921         79        456
+
+
+{txt}{hline}
+-> cac0 = 0
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}hdl1 {c |}{res}      2,564    48.71802    14.34654         15        127
+
+{txt}{hline}
+-> cac0 = 1
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}hdl1 {c |}{res}      3,351    52.40257    15.01941         21        142
+
+
+{txt}{hline}
+-> cac0 = 0
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}dm {c |}{res}      2,573    .1733385    .3786132          0          1
+
+{txt}{hline}
+-> cac0 = 1
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}dm {c |}{res}      3,364    .0998811     .299886          0          1
+
+{txt}
+{com}. 
+. 
+. *** Figure 1a: Eligibility vs. age
+. mkspline age0 = age, cubic nknots(4)
+{txt}
+{com}.         logistic elig age0*
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     5,937
+{txt}{col 49}LR chi2({res}3{txt}){col 67}= {res}    785.21
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-2574.9544{txt}{col 49}Pseudo R2{col 67}= {res}    0.1323
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        elig{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}age01 {c |}{col 14}{res}{space 2} 1.192883{col 26}{space 2} .0448889{col 37}{space 1}    4.69{col 46}{space 3}0.000{col 54}{space 4} 1.108069{col 67}{space 3}  1.28419
+{txt}{space 7}age02 {c |}{col 14}{res}{space 2} 1.117262{col 26}{space 2} .1018074{col 37}{space 1}    1.22{col 46}{space 3}0.224{col 54}{space 4} .9345266{col 67}{space 3} 1.335729
+{txt}{space 7}age03 {c |}{col 14}{res}{space 2} .5058629{col 26}{space 2} .1125003{col 37}{space 1}   -3.06{col 46}{space 3}0.002{col 54}{space 4} .3271385{col 67}{space 3} .7822291
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 5.28e-06{col 26}{space 2} .0000103{col 37}{space 1}   -6.22{col 46}{space 3}0.000{col 54}{space 4} 1.14e-07{col 67}{space 3} .0002435
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}.         lroc, nograph
+
+{txt}Logistic model for elig
+
+number of observations = {res}    5937
+{txt}area under ROC curve   = {res}  0.7420
+{txt}
+{com}.         predictnl eligP = predict(), ci(eligP_l eligP_u)  
+{txt}note: confidence intervals calculated using Z critical values
+
+{com}.         sort age        
+{txt}
+{com}. twoway scatter eligP eligP_l eligP_u age, connect (L L L) msymbol (i i i ) /*
+>         */ lwidth (thick medium medium) lcolor (black gs10 gs10) yscale(range(0.0 1)) ylabel(0 (0.2) 1) /*
+>         */ ytitle("Probability of Being Appropriate for CAC Testing") xtitle("Age (years)") legend(off)
+{res}{txt}
+{com}.         graph export /Users/sussmanjb/Data/mesa/ageElig.pdf, replace
+{txt}(file /Users/sussmanjb/Data/mesa/ageElig.pdf written in PDF format)
+
+{com}. 
+. *** Figure 1b: Risk factors vs. age ****
+. twoway scatter rfcount age  if elig ==1, msymbol(i i i ) ||fpfitci rfcount age  if elig ==1, lcolor (black) lwidth (thick) alcolor(gs10) alwidth(medium medium) /*
+>         */ fcolor(none) ytitle("ASCVD risk factors, other than age, number") xtitle("Age (years)") legend(off) /*
+>         */  yscale(range(0 4))     ylabel(0 1 2 3 4,labcolor(navy))
+{res}{txt}
+{com}. graph export /Users/sussmanjb/Data/mesa/ageRF.pdf, replace
+{txt}(file /Users/sussmanjb/Data/mesa/ageRF.pdf written in PDF format)
+
+{com}. 
+. 
+. *** Figure 1c: % CAC0 vs. age ***
+. drop age0*
+{txt}
+{com}. mkspline age0 = age  if elig ==1, cubic nknots(4)
+{txt}
+{com}.     logistic cac0 age0*  if elig ==1
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     1,185
+{txt}{col 49}LR chi2({res}3{txt}){col 67}= {res}     31.60
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-801.76682{txt}{col 49}Pseudo R2{col 67}= {res}    0.0193
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        cac0{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}age01 {c |}{col 14}{res}{space 2} .9095123{col 26}{space 2} .0285258{col 37}{space 1}   -3.02{col 46}{space 3}0.002{col 54}{space 4} .8552866{col 67}{space 3} .9671759
+{txt}{space 7}age02 {c |}{col 14}{res}{space 2} 1.086362{col 26}{space 2} .0740474{col 37}{space 1}    1.22{col 46}{space 3}0.224{col 54}{space 4} .9505085{col 67}{space 3} 1.241633
+{txt}{space 7}age03 {c |}{col 14}{res}{space 2} .6352974{col 26}{space 2} .3287277{col 37}{space 1}   -0.88{col 46}{space 3}0.381{col 54}{space 4} .2304264{col 67}{space 3} 1.751548
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 290.2405{col 26}{space 2} 523.2869{col 37}{space 1}    3.15{col 46}{space 3}0.002{col 54}{space 4} 8.474046{col 67}{space 3} 9940.889
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}.         lroc  if elig ==1, nograph
+
+{txt}Logistic model for cac0
+
+number of observations = {res}    1185
+{txt}area under ROC curve   = {res}  0.5811
+{txt}
+{com}.         predictnl cacP = predict()  if elig ==1, ci(cacP_l cacP_u)  
+{txt}(4,752 missing values generated)
+note: confidence intervals calculated using Z critical values
+
+{com}.         sort age        
+{txt}
+{com}. twoway scatter cacP cacP_l cacP_u age  if elig ==1, connect (L L L) msymbol (i i i ) /*
+>         */ lwidth (thick medium medium) lcolor (black gs10 gs10) yscale(range(0.0 1)) ylabel(0 (0.2) 1) /*
+>         */ ytitle("Probability of CAC = 0") xtitle("Age (years)") legend(off)
+{res}{txt}
+{com}.         graph export /Users/sussmanjb/Data/mesa/ageCac0.pdf, replace
+{txt}(file /Users/sussmanjb/Data/mesa/ageCac0.pdf written in PDF format)
+
+{com}. 
+.         
+. ** Note for Jeremy: 
+. ** older versions of this have some analyses for the stuff I plan for later     
+. 
+. save mesa2, replace
+{txt}file mesa2.dta saved
+
+{com}.  export delimited using "/Users/sussmanjb/Data/mesa/MesaForR.csv", replace      
+{res}{txt}file /Users/sussmanjb/Data/mesa/MesaForR.csv saved
+
+{com}.         aa
+{err}command {bf}aa{sf} is unrecognized
+{txt}{search r(199), local:r(199);}
+
+end of do-file
+
+{search r(199), local:r(199);}
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/sussmanjb/Data/mesa/MesaCodeJBS/MesaCAC_2018-12-04.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 4 Dec 2018, 22:38:28
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
